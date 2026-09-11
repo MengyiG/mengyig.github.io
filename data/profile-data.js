@@ -126,27 +126,12 @@ const PROFILE = {
       private: true,
     },
     {
-      name: 'xiaohongshu-mcp',
-      repo: 'https://github.com/MengyiG/xiaohongshu-mcp',
-      year: 2026,
-      stack: ['Go', 'MCP'],
-      blurb: 'A Model Context Protocol server for xiaohongshu.com, forked and extended.',
-      fork: true,
-    },
-    {
       name: 'MyChatroomHub',
       repo: 'https://github.com/MengyiG/MyChatroomHub',
       year: 2024,
       stack: ['Spring Boot', 'WebSocket'],
       blurb: 'Real-time chatroom with presence, rooms and message history.',
       featured: true,
-    },
-    {
-      name: 'MyAIImageReader',
-      repo: 'https://github.com/MengyiG/MyAIImageReader',
-      year: 2024,
-      stack: ['Python', 'Vision API'],
-      blurb: 'Pulls structured text out of images and hands it back as clean data.',
     },
     {
       name: 'MyDockerApp',
