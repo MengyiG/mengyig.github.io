@@ -24,7 +24,9 @@ const PROFILE = {
   /* ── Identity ──────────────────────────────────────────────────── */
   identity: {
     name: 'Mengyi Guo',
-    greeting: ['Hi', 'Bonjour', '你好'],
+    /* A welcome, not a language claim — the languages she actually works in are
+       stated in `tags` below (EN · FR · 中文). The last entry gets the accent colour. */
+    greeting: ['Hi', 'Hola', 'Bonjour', '你好'],
     role: 'Full Stack Developer',
     company: { name: 'SimWell', url: 'https://www.simwell.io/' },
 

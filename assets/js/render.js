@@ -18,7 +18,8 @@
   /* ── Hero ── */
   const greet = P.identity.greeting;
   fill('greeting',
-    esc(greet[0]) + ', ' + esc(greet[1]) + ', <span class="zh">' + esc(greet[2]) + '</span>'
+    greet.slice(0, -1).map(esc).join(', ') +
+    ', <span class="zh">' + esc(greet[greet.length - 1]) + '</span>'
   );
   fill('role-line', esc(P.identity.role) + ' · ' + esc(P.identity.company.name));
 
