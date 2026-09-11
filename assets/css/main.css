@@ -371,7 +371,8 @@ img.cert-mark{ border-radius:0; object-fit:contain; }
 .cert-list .meta{ font-size:12.5px; color:var(--ink-3); }
 
 /* Fun facts */
-.fun-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+/* 300px keeps six cards as two rows of three rather than a ragged 4 + 2. */
+.fun-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; }
 .fun-card{
   background:var(--card); border:1px solid var(--line); border-radius:var(--radius-lg);
   overflow:hidden; display:flex; flex-direction:column;

@@ -271,6 +271,19 @@ const PROFILE = {
       image: 'images/plants.jpg',
     },
     {
+      emoji: '🐰',
+      title: 'And a rabbit',
+      body: 'Sharing the apartment with the dachshund. The side table, the book stack and anything left within reach are all considered theirs.',
+      image: 'images/rabbit.jpg',
+      imagePosition: 'center 45%',
+    },
+    {
+      emoji: '🌳',
+      title: 'Afternoons that go nowhere',
+      body: 'A park, a bike and a few hours with nothing scheduled. Some of the best thinking happens away from a screen.',
+      image: 'images/garden.jpg',
+    },
+    {
       emoji: '🔊',
       title: 'Three languages',
       body: 'English, French and Mandarin — and a certification that says I can switch between two of them live, under pressure.',
