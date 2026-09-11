@@ -81,12 +81,13 @@
   ).join(''));
 
   /* ── Projects ── */
+  const TINTS = ['tint-a', 'tint-b', 'tint-c', 'tint-d', 'tint-e'];
   const projects = P.projects.slice().sort((a, b) => b.year - a.year);
-  fill('projects', projects.map((p) => {
+  fill('projects', projects.map((p, i) => {
     const link = p.private
-      ? '<span class="card-link" style="color:#918C81">Private repo</span>'
+      ? '<span class="card-link" style="opacity:.55">Private repo</span>'
       : '<a class="card-link" href="' + esc(p.repo) + '" target="_blank" rel="noopener">View on GitHub →</a>';
-    return '<article class="card' + (p.featured ? ' is-featured' : '') + '">' +
+    return '<article class="card proj-card ' + TINTS[i % TINTS.length] + '">' +
       '<div class="proj-head">' +
         '<h3>' + esc(p.name) + '</h3>' +
         '<span class="proj-year">' + esc(p.year) + '</span>' +

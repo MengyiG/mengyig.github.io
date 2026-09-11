@@ -241,17 +241,29 @@ a{ color:inherit; }
 .card.is-blossom{ background:var(--blossom); border-color:var(--blossom); }
 .card.is-blossom p{ color:#4A3340; }
 
-/* Projects sit on ink so the portfolio reads as its own chapter, not another
-   tint of the same cream. */
-.section-dark{ background:var(--ink); color:var(--ground); }
-.section-dark .section-note{ color:#9A958A; }
-.section-dark .card{ background:#1E1E1C; border-color:#33322E; }
-.section-dark .card p{ color:#C5C0B4; }
-.section-dark .card-meta,
-.section-dark .proj-year{ color:#918C81; }
-.section-dark .proj-stack span{ background:#141414; border-color:#3A3833; color:#C5C0B4; }
-.section-dark .card-link{ color:var(--marigold); }
-.section-dark .card.is-featured{ border-color:var(--marigold); }
+/* Project cards carry the colour instead of the section, so the page stays one
+   bright system. Each tint sets the ink it needs; everything reads from --on. */
+.proj-card{
+  --tint:var(--card);
+  --on:var(--ink);
+  --chip:rgba(20,20,20,.07);
+  --chip-line:rgba(20,20,20,.13);
+  background:var(--tint); border-color:var(--tint); color:var(--on);
+}
+.proj-card p{ color:var(--on); opacity:.82; }
+.proj-card .proj-year{ color:var(--on); opacity:.55; }
+.proj-card .proj-stack span{ background:var(--chip); border-color:var(--chip-line); color:var(--on); }
+.proj-card .card-link{ color:var(--on); }
+.proj-card .card-link:hover{ opacity:.7; }
+
+.tint-a{ --tint:var(--marigold); }
+/* Deeper than the hero's cornflower: white body text needs 4.5:1, and the
+   lighter blue only reaches 4.3:1. */
+.tint-b{ --tint:#3452E0; --on:#fff; --chip:rgba(255,255,255,.18); --chip-line:rgba(255,255,255,.32); }
+.tint-b p{ opacity:.93; }
+.tint-c{ --tint:#3DDC84; }
+.tint-d{ --tint:#FF8A47; }
+.tint-e{ --tint:var(--blossom); }
 
 /* Tools */
 .tool-groups{ display:grid; gap:22px; }
