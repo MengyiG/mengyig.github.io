@@ -246,6 +246,13 @@ a{ color:inherit; }
 @media (max-width:1000px){ .quotes{ columns:2; } }
 @media (max-width:640px){ .quotes{ columns:1; } }
 
+.quotes-more{ margin-top:4px; }
+.quotes-more a{
+  display:inline-block; font-size:14.5px; font-weight:600; text-decoration:none;
+  padding:11px 20px; border-radius:99px; border:1px solid var(--ink);
+}
+.quotes-more a:hover{ background:var(--ink); color:var(--ground); }
+
 .grid{ display:grid; gap:18px; }
 .grid-2{ grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
 .grid-3{ grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); }

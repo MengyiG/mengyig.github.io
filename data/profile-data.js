@@ -302,8 +302,9 @@ const PROFILE = {
   ],
 
   /* ── What colleagues said ──────────────────────────────────────── */
-  /* Carried over from the previous site. Not currently rendered — enable
-     a section for these if the chosen direction has room. */
+  /* Excerpts from LinkedIn recommendations. The "and more" link sends readers
+     to the full list rather than reproducing all of them here. */
+  recommendationsUrl: 'https://www.linkedin.com/in/mengyi-guo/details/recommendations/',
   recommendations: [
     {
       quote: 'I was immediately impressed by her remarkable initiative to learn and grow professionally. Her dedication to continuous learning was not confined to our work hours.',
@@ -322,18 +323,6 @@ const PROFILE = {
       author: 'Tsz Chung Tong',
       title: 'Senior Software Developer, CIBC',
       relation: 'co-worker',
-    },
-    {
-      quote: 'She consistently met deadlines, handled challenging situations with professionalism and composure, and demonstrated exceptional attention to detail.',
-      author: 'Shih-Eng Liu',
-      title: 'Accounting Manager, ILAC',
-      relation: 'manager',
-    },
-    {
-      quote: 'A quick learner who is able to work within given parameters, as well as creatively come up with solutions when faced with challenges.',
-      author: 'Najma Ali',
-      title: 'School Principal, Kells Academy',
-      relation: 'manager',
     },
   ],
 

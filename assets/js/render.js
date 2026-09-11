@@ -75,6 +75,11 @@
     '</figure>'
   ).join(''));
 
+  fill('quotes-more',
+    '<a href="' + esc(P.recommendationsUrl || P.contact.linkedin) + '" target="_blank" rel="noopener">' +
+      'and more on LinkedIn →' +
+    '</a>');
+
   /* ── Tools & trends ── */
   fill('tool-groups', P.tools.groups.map((g) =>
     '<div class="tool-group">' +
