@@ -250,16 +250,16 @@ const PROFILE = {
       school: 'McGill University',
       period: 'Sep 2015 – Jun 2017',
       gpa: '3.8 / 4.0',
-      mark: 'Mc',
+      mark: 'MCGILL',
       color: '#ED1B2F',
     },
   ],
 
-  /* Same reasoning as education. Your AWS and Azure badges on Credly are issued
-     to you and can be used directly — drop the image in and add `logo:`. */
+  /* AWS and Azure use the official Credly badges issued to Mengyi. The other two
+     fall back to a typographic mark. */
   certifications: [
-    { name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2024', mark: 'aws', color: '#FF9900' },
-    { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'Microsoft', date: 'February 2024', mark: 'Az', color: '#0078D4' },
+    { name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2024', logo: 'images/aws-badge.png' },
+    { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'Microsoft', date: 'February 2024', logo: 'images/azure-badge.png' },
     { name: 'Software Development Certificate', issuer: 'Virginia Tech', date: 'June 2023', mark: 'VT', color: '#861F41' },
     { name: 'Certified English–Mandarin Interpreter', issuer: 'China', date: '', mark: '文', color: '#4C6FF5' },
   ],
