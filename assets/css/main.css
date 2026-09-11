@@ -203,6 +203,12 @@ a{ color:inherit; }
 .section{ padding:88px max(var(--pad), calc((100% - var(--shell)) / 2)); }
 .section-alt{ background:var(--ground-alt); }
 .section-head{ margin-bottom:36px; }
+
+/* Same cropped circles as the hero, so the page keeps one visual language. */
+.has-blobs{ position:relative; overflow:hidden; }
+.has-blobs > *:not(.blob){ position:relative; z-index:1; }
+.blob-tools-1{ width:300px; height:300px; background:var(--cornflower); top:-130px; right:-80px; }
+.blob-tools-2{ width:210px; height:210px; background:#3DDC84; bottom:-95px; left:-70px; }
 .section-head h2{ font-size:clamp(30px,4vw,42px); }
 .section-note{ margin-top:10px; color:var(--ink-3); font-size:15px; }
 .sub-head{
@@ -256,14 +262,13 @@ a{ color:inherit; }
 .proj-card .card-link{ color:var(--on); }
 .proj-card .card-link:hover{ opacity:.7; }
 
+/* Blue is the hero's and the Tools blobs' colour — kept out of here so it stays
+   a signal rather than another card. Every tint takes ink text. */
 .tint-a{ --tint:var(--marigold); }
-/* Deeper than the hero's cornflower: white body text needs 4.5:1, and the
-   lighter blue only reaches 4.3:1. */
-.tint-b{ --tint:#3452E0; --on:#fff; --chip:rgba(255,255,255,.18); --chip-line:rgba(255,255,255,.32); }
-.tint-b p{ opacity:.93; }
+.tint-b{ --tint:var(--blossom); }
 .tint-c{ --tint:#3DDC84; }
 .tint-d{ --tint:#FF8A47; }
-.tint-e{ --tint:var(--blossom); }
+.tint-e{ --tint:var(--card); --chip:var(--ground); --chip-line:var(--line); }
 
 /* Tools */
 .tool-groups{ display:grid; gap:22px; }
