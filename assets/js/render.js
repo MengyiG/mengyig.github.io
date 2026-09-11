@@ -16,11 +16,11 @@
   }
 
   /* ── Hero ── */
-  const greet = P.identity.greeting;
-  fill('greeting',
-    greet.slice(0, -1).map(esc).join(', ') +
-    ', <span class="zh">' + esc(greet[greet.length - 1]) + '</span>'
-  );
+  fill('greeting', P.identity.greeting.map((g) =>
+    g.color
+      ? '<span style="color:' + esc(g.color) + '">' + esc(g.text) + '</span>'
+      : esc(g.text)
+  ).join(', '));
   fill('role-line', esc(P.identity.role) + ' · ' + esc(P.identity.company.name));
 
   /* Link the employer's name wherever it appears in the intro copy. */

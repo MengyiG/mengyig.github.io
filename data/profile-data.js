@@ -25,8 +25,13 @@ const PROFILE = {
   identity: {
     name: 'Mengyi Guo',
     /* A welcome, not a language claim — the languages she actually works in are
-       stated in `tags` below (EN · FR · 中文). The last entry gets the accent colour. */
-    greeting: ['Hi', 'Hola', 'Bonjour', '你好'],
+       stated in `tags` below (EN · FR · 中文). `color` is optional per word. */
+    greeting: [
+      { text: 'Hi' },
+      { text: 'Hola', color: '#D6431B' },
+      { text: 'Bonjour' },
+      { text: '你好', color: '#4C6FF5' },
+    ],
     role: 'Full Stack Developer',
     company: { name: 'SimWell', url: 'https://www.simwell.io/' },
 
