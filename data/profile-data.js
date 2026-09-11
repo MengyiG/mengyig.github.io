@@ -317,6 +317,12 @@ const PROFILE = {
       relation: 'classmate',
     },
     {
+      quote: 'She always delivered exceptional quality, was extremely knowledgeable in the IT field, provided thorough research, and consistently delivered ahead of deadlines. An effective leader providing excellent collaboration.',
+      author: 'Angela (Morris) Borden',
+      title: 'Director, Multifamily Risk, Fannie Mae',
+      relation: 'classmate',
+    },
+    {
       quote: 'I was immediately impressed by her remarkable initiative to learn and grow professionally. Her dedication to continuous learning was not confined to our work hours.',
       author: 'Minfeng Xu',
       title: 'Application Developer, CIBC',
