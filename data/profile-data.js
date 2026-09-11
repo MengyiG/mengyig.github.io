@@ -292,6 +292,24 @@ const PROFILE = {
   recommendationsUrl: 'https://www.linkedin.com/in/mengyi-guo/details/recommendations/',
   recommendations: [
     {
+      quote: 'She is hard-working and professional, consistently taking initiative and learning new things to bring back to the team. She is also always ready to help or teach anyone who needs it.',
+      author: 'Loïs Garcion',
+      title: 'Fullstack Software Engineer · Java, Cloud & DevOps',
+      relation: 'co-worker',
+    },
+    {
+      quote: 'Her proactive nature truly stood out when she took the initiative to assist me in Dockerizing our application, showcasing not only her technical skills but also her willingness to collaborate and support her team.',
+      author: 'Olivia Kim',
+      title: 'Equity Derivatives IT · Google Cloud & AWS Certified Architect',
+      relation: 'co-worker',
+    },
+    {
+      quote: 'Mengyi is one of the best teammates I had in Virginia Tech\'s MIT program. I noticed her eye for detail, team spirit, and objectivity in every assignment during the period I worked with her.',
+      author: 'Sabrina Ahmed',
+      title: 'Software Test Automation Engineer',
+      relation: 'classmate',
+    },
+    {
       quote: 'I was immediately impressed by her remarkable initiative to learn and grow professionally. Her dedication to continuous learning was not confined to our work hours.',
       author: 'Minfeng Xu',
       title: 'Application Developer, CIBC',
@@ -301,12 +319,6 @@ const PROFILE = {
       quote: 'She is always keen to learn new technologies and can always complete tasks on time. I am impressed by her work ethic and communication skills.',
       author: 'Ran Shang',
       title: 'Online Programmer, Ubisoft',
-      relation: 'co-worker',
-    },
-    {
-      quote: 'She asked questions politely and made sure she got what she needed for her deliverables. A dependable team member.',
-      author: 'Tsz Chung Tong',
-      title: 'Senior Software Developer, CIBC',
       relation: 'co-worker',
     },
   ],
