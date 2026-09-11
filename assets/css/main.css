@@ -224,6 +224,28 @@ a{ color:inherit; }
 }
 .lead-quote em{ font-style:normal; background:var(--marigold); padding:0 8px; border-radius:7px; }
 
+/* Columns rather than a grid: the quotes differ in length, and flowing them
+   avoids the ragged last row a five-item grid would leave. */
+.quotes{ columns:3; column-gap:18px; }
+.quote{
+  break-inside:avoid; margin:0 0 18px;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:24px;
+}
+.quote blockquote{
+  margin:0; font-size:15px; line-height:1.6; color:var(--ink-2);
+}
+.quote blockquote::before{ content:"“"; }
+.quote blockquote::after{ content:"”"; }
+.quote figcaption{
+  display:flex; flex-direction:column; gap:1px;
+  margin-top:14px; padding-top:13px; border-top:1px solid var(--line);
+}
+.quote .who{ font-size:14px; font-weight:600; }
+.quote .what{ font-size:12.5px; color:var(--ink-3); }
+@media (max-width:1000px){ .quotes{ columns:2; } }
+@media (max-width:640px){ .quotes{ columns:1; } }
+
 .grid{ display:grid; gap:18px; }
 .grid-2{ grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
 .grid-3{ grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); }

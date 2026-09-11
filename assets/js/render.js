@@ -65,6 +65,16 @@
     '</article>'
   ).join(''));
 
+  fill('recommendations', P.recommendations.map((r) =>
+    '<figure class="quote">' +
+      '<blockquote>' + esc(r.quote) + '</blockquote>' +
+      '<figcaption>' +
+        '<span class="who">' + esc(r.author) + '</span>' +
+        '<span class="what">' + esc(r.title) + '</span>' +
+      '</figcaption>' +
+    '</figure>'
+  ).join(''));
+
   /* ── Tools & trends ── */
   fill('tool-groups', P.tools.groups.map((g) =>
     '<div class="tool-group">' +
