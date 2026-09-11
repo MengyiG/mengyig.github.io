@@ -1,4 +1,4 @@
-/* render.js — paints every section from PROFILE. No content lives in the markup. */
+/* render.js: paints every section from PROFILE. No content lives in the markup. */
 
 (function () {
   'use strict';
@@ -42,7 +42,7 @@
     if (P.identity.avatarPosition) avatar.style.objectPosition = P.identity.avatarPosition;
   }
 
-  /* Speech bubbles around the mascot — each opens the chat with that question. */
+  /* Speech bubbles around the mascot; each opens the chat with that question. */
   fill('mascot-prompts', (P.ai.mascotPrompts || []).map((q) =>
     '<button class="prompt-bubble" type="button" data-ask="' + esc(q) + '">' + esc(q) + '</button>'
   ).join(''));
@@ -204,7 +204,7 @@
   const chatAvatar = slot('chat-avatar');
   if (chatAvatar) chatAvatar.src = P.identity.avatar;
 
-  document.title = P.identity.name + ' — ' + P.identity.role;
+  document.title = P.identity.name + ' · ' + P.identity.role;
 
   /* ── Nav shadow on scroll ── */
   const nav = $('#nav');
@@ -227,7 +227,7 @@
     }
 
     if (!c.formAccessKey) {
-      status.textContent = 'The form is not connected yet — email ' + c.email + ' in the meantime.';
+      status.textContent = 'The form is not connected yet. Email ' + c.email + ' in the meantime.';
       status.classList.add('is-err');
       return;
     }

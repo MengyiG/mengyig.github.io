@@ -1,4 +1,4 @@
-/* main.css — Mengyi Guo
+/* main.css: Mengyi Guo
    Palette and type for the site. Content comes from data/profile-data.js. */
 
 :root{
@@ -290,7 +290,7 @@ a{ color:inherit; }
 .proj-card .card-link{ color:var(--on); }
 .proj-card .card-link:hover{ opacity:.7; }
 
-/* Blue is the hero's and the Tools blobs' colour — kept out of here so it stays
+/* Blue is the hero's and the Tools blobs' colour, kept out of here so it stays
    a signal rather than another card. Every tint takes ink text. */
 .tint-a{ --tint:var(--marigold); }
 .tint-b{ --tint:var(--blossom); }
@@ -340,7 +340,7 @@ a{ color:inherit; }
 .job-stack{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
 .job-stack span{ font-size:11.5px; padding:4px 10px; border-radius:8px; background:var(--card); border:1px solid var(--line); }
 
-/* Education — typographic crests, not licensed university logos */
+/* Education: typographic crests, not licensed university logos */
 .edu-card{ flex-direction:row; align-items:flex-start; gap:18px; }
 /* Auto-width so a two-letter mark and a full wordmark both sit well. */
 .crest{

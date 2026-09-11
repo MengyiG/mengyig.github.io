@@ -1,5 +1,5 @@
 /**
- * profile-data.js — single source of truth for mengyig.github.io
+ * profile-data.js: single source of truth for mengyig.github.io
  *
  * Everything on the site renders from this file. Nothing is hardcoded in markup.
  * The AI assistant on the site is also grounded in this file, so a fact only
@@ -24,7 +24,7 @@ const PROFILE = {
   /* ── Identity ──────────────────────────────────────────────────── */
   identity: {
     name: 'Mengyi Guo',
-    /* A welcome, not a language claim — the languages she actually works in are
+    /* A welcome, not a language claim. The languages she actually works in are
        stated in `tags` below (EN · FR · 中文). `color` is optional per word. */
     greeting: [
       { text: 'Hi' },
@@ -39,7 +39,7 @@ const PROFILE = {
 
     headline: 'I ship systems, and I explain them.',
     avatar: 'images/portrait.jpg',
-    // object-position for the hero crop — she stands right of centre in this frame.
+    // object-position for the hero crop; she stands right of centre in this frame.
     avatarPosition: '76% 42%',
   },
 
@@ -55,7 +55,7 @@ const PROFILE = {
     github: 'https://github.com/MengyiG',
     youtube: 'https://www.youtube.com/@Lea-pe7jy',
 
-    // Web3Forms access key — set after signing up; the key is safe to expose publicly.
+    // Web3Forms access key, set after signing up. The key is safe to expose publicly.
     formEndpoint: 'https://api.web3forms.com/submit',
     formAccessKey: '',
   },
@@ -73,7 +73,7 @@ const PROFILE = {
   /* ── Intro copy ────────────────────────────────────────────────── */
   intro: {
     short: 'Full-stack developer at SimWell. I build distributed backends on Java and Spring Boot, then run them on Azure Kubernetes with Terraform and Flux.',
-    long: 'Full-stack developer at SimWell, where I am the primary engineer across the whole platform — backend services, the cloud infrastructure under them, testing, operations, and talking to clients directly. I came to engineering from language teaching: I hold a master\'s in Second Language Education from McGill and worked as a certified English–Mandarin interpreter before a second master\'s in Information Technology at Virginia Tech.',
+    long: 'Full-stack developer at SimWell, where I am the primary engineer across the whole platform: backend services, the cloud infrastructure under them, testing, operations, and talking to clients directly. I came to engineering from language teaching: I hold a master\'s in Second Language Education from McGill and worked as a certified English-Mandarin interpreter before a second master\'s in Information Technology at Virginia Tech.',
   },
 
   /* ── My philosophy ─────────────────────────────────────────────── */
@@ -100,16 +100,16 @@ const PROFILE = {
     groups: [
       { group: 'Languages', items: ['Java 17', 'Python 3', 'TypeScript', 'Bash', 'SQL'] },
       { group: 'Backend', items: ['Spring Boot 3.5', 'Spring Cloud', 'RabbitMQ', 'PostgreSQL', 'TestContainers'] },
-      { group: 'Cloud — Azure', items: ['AKS', 'Key Vault', 'Blob Storage', 'Azure AD', 'ACR', 'PostgreSQL Flexible Server'] },
+      { group: 'Cloud · Azure', items: ['AKS', 'Key Vault', 'Blob Storage', 'Azure AD', 'ACR', 'PostgreSQL Flexible Server'] },
       { group: 'Infrastructure', items: ['Terraform', 'Flux v2', 'Kustomize', 'Helm', 'Docker', 'Gateway API'] },
       { group: 'Observability', items: ['OpenTelemetry', 'Jaeger', 'Prometheus', 'Grafana', 'Log Analytics'] },
     ],
-    // What I am actively following right now — this is the part that should change often.
+    // What I am actively following right now. This is the part that should change often.
     trends: [
       { name: 'Agentic coding', note: 'Building with the Anthropic Java SDK at work; running Claude Code on my own projects daily.' },
       { name: 'RAG evaluation', note: 'Less about retrieval tricks, more about how you know the answer was right.' },
       { name: 'MCP', note: 'Model Context Protocol servers as the clean way to give a model real tools.' },
-      { name: 'Platform engineering', note: 'GitOps all the way down — if it is not in the repo, it does not exist.' },
+      { name: 'Platform engineering', note: 'GitOps all the way down. If it is not in the repo, it does not exist.' },
     ],
   },
 
@@ -120,7 +120,7 @@ const PROFILE = {
       repo: 'https://github.com/MengyiG/myRAGPlayground',
       year: 2026,
       stack: ['Python', 'RAG', 'Embeddings'],
-      blurb: 'Retrieval experiments on my own documents — chunking strategies, embedding choices, and a harness for judging whether the answers actually improved.',
+      blurb: 'Retrieval experiments on my own documents: chunking strategies, embedding choices, and a harness for judging whether the answers actually improved.',
       featured: true,
     },
     {
@@ -161,9 +161,9 @@ const PROFILE = {
       location: 'Remote',
       current: true,
       stack: ['Java 17', 'Spring Boot 3.5', 'RabbitMQ', 'Azure AKS', 'Terraform', 'Flux v2', 'OpenTelemetry'],
-      webSummary: 'Primary engineer on the Compass platform — a multi-module Spring Boot microservice estate on Java 17, running on private Azure Kubernetes clusters that I provision with Terraform and deploy with Flux v2 GitOps. I own it end to end: backend, infrastructure, tests, operations, and the client conversations.',
+      webSummary: 'Primary engineer on the Compass platform, a multi-module Spring Boot microservice estate on Java 17, running on private Azure Kubernetes clusters that I provision with Terraform and deploy with Flux v2 GitOps. I own it end to end: backend, infrastructure, tests, operations, and the client conversations.',
       bullets: [
-        'Served as the primary engineer across the full Compass platform lifecycle — owning backend development, cloud infrastructure, testing, operations, and direct client-facing technical communication end-to-end.',
+        'Served as the primary engineer across the full Compass platform lifecycle, owning backend development, cloud infrastructure, testing, operations, and direct client-facing technical communication end-to-end.',
         'Designed and maintained a multi-module Spring Boot 3.5 microservices platform (Auth, Simulation, AI services) on Java 17 and Spring Cloud across local, dev, staging, demo, and production environments.',
         'Engineered asynchronous job dispatch using RabbitMQ and Spring AMQP, enabling decoupled simulation execution via Java-native and Python-script workers deployed as Kubernetes Jobs.',
         'Integrated Azure cloud services: Azure Active Directory (OAuth2/JWT), Blob Storage, Azure Communication Services, and Key Vault for zero-secret-in-code credential management.',
@@ -187,7 +187,7 @@ const PROFILE = {
       location: 'Toronto, ON, Canada',
       current: false,
       stack: ['Java', 'Spring Boot', 'Splunk', 'OpenShift'],
-      webSummary: 'Built eBanking payment features (Costco Business Card, Smart Planner) in an enterprise Spring Boot codebase, and worked production support — roughly three live issues a week, traced through Splunk and OpenShift.',
+      webSummary: 'Built eBanking payment features (Costco Business Card, Smart Planner) in an enterprise Spring Boot codebase, and worked production support, roughly three live issues a week, traced through Splunk and OpenShift.',
       bullets: [
         'Translated business requirements into technical specifications in Java; developed product features (Costco Business Card, Smart Planner) in an enterprise Spring Boot project, from requirement gathering to production support.',
         'Leveraged Splunk and Red Hat OpenShift to examine logs and performance data, debugging across thousands of transactions to investigate production issues.',
@@ -219,14 +219,14 @@ const PROFILE = {
       current: false,
       priorCareer: true,
       stack: ['EN ⇄ 中文', 'Teaching', 'Accounting ops'],
-      webSummary: 'Certified English–Mandarin interpreter in China, then language teaching and school administration in Montreal. The part of my résumé that most shapes how I work: if I cannot explain it, I do not understand it yet.',
+      webSummary: 'Certified English-Mandarin interpreter in China, then language teaching and school administration in Montreal. The part of my résumé that most shapes how I work: if I cannot explain it, I do not understand it yet.',
       bullets: [],
     },
   ],
 
   /* ── Education ─────────────────────────────────────────────────── */
   /* `mark` + `color` draw a typographic crest rather than the school's official
-     logo — university marks are trademarked and licensed. Swap in a real crest
+     logo, because university marks are trademarked and licensed. Swap in a real crest
      by adding `logo: 'images/vt.png'` if you get permission or an official asset. */
   education: [
     {
@@ -253,7 +253,7 @@ const PROFILE = {
     { name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2024', logo: 'images/aws-badge.png' },
     { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'Microsoft', date: 'February 2024', logo: 'images/azure-badge.png' },
     { name: 'Software Development Certificate', issuer: 'Virginia Tech', date: 'June 2023', mark: 'VT', color: '#861F41' },
-    { name: 'Certified English–Mandarin Interpreter', issuer: 'China', date: '', mark: '文', color: '#4C6FF5' },
+    { name: 'Certified English-Mandarin Interpreter', issuer: 'China', date: '', mark: '文', color: '#4C6FF5' },
   ],
 
   /* ── Fun facts ─────────────────────────────────────────────────── */
@@ -286,7 +286,7 @@ const PROFILE = {
     {
       emoji: '🔊',
       title: 'Three languages',
-      body: 'English, French and Mandarin — and a certification that says I can switch between two of them live, under pressure.',
+      body: 'English, French and Mandarin, plus a certification that says I can switch between two of them live, under pressure.',
       image: 'images/curious.jpg',
     },
     {
@@ -354,12 +354,13 @@ const PROFILE = {
      what the data itself cannot express: tone, boundaries, and openers. */
   ai: {
     displayName: 'AI Mengyi',
-    tagline: 'Ask me anything — I answer 24/7.',
+    tagline: 'Ask me anything. I answer 24/7.',
     persona: 'Answer as Mengyi in the first person: direct, warm, specific. Prefer concrete detail over adjectives. It is fine to say you do not know.',
     boundaries: [
-      'Never state a salary expectation, notice period, or visa status — offer to pass the question to the real Mengyi instead.',
+      'Never state a salary expectation, notice period, or visa status. Offer to pass the question to the real Mengyi instead.',
       'Do not invent projects, employers, dates, or metrics that are not in this file.',
       'Keep answers under roughly 120 words unless asked to go deeper.',
+      'Never use em dashes. Use commas, colons or separate sentences instead.',
     ],
     // Shown as speech bubbles around the mascot on the hero.
     mascotPrompts: [

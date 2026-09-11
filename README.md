@@ -1,7 +1,7 @@
 # mengyig.github.io
 
-Personal site for Mengyi Guo. Static HTML, CSS and vanilla JS — no build step,
-no framework. GitHub Pages serves `main` directly.
+Personal site for Mengyi Guo. Static HTML, CSS and vanilla JS, with no build
+step and no framework. GitHub Pages serves `main` directly.
 
 ## One data file
 
@@ -22,7 +22,7 @@ data/profile-data.js   ← edit this
 | Path | What it is |
 |---|---|
 | `index.html` | Structure and mount points only |
-| `data/profile-data.js` | All content — the single source of truth |
+| `data/profile-data.js` | All content, the single source of truth |
 | `assets/js/render.js` | Renders every section from the data file |
 | `assets/js/chat.js` | The AI chat panel |
 | `assets/css/main.css` | Styles |
@@ -43,7 +43,7 @@ Then open http://localhost:4321.
 
 Sign up at [web3forms.com](https://web3forms.com) (free), then put the access key
 in `data/profile-data.js` under `contact.formAccessKey`. The key is meant to be
-public — it only lets a form post to your own inbox.
+public, since it only lets a form post to your own inbox.
 
 Until it is set, the form tells visitors to email instead.
 
@@ -66,7 +66,7 @@ Until it is set, the chat panel opens and says it is not connected yet rather
 than pretending to answer.
 
 **Cost.** The Worker uses `claude-opus-5`. The profile data is cached between
-requests, so a typical exchange is a fraction of a cent — but an open chat box on
+requests, so a typical exchange is a fraction of a cent. But an open chat box on
 a public page can be abused. The Worker caps message length, history length and
 requests per IP per minute; for real protection add a Cloudflare Rate Limiting
 rule on the Worker route, and set a spend limit in the Anthropic Console.

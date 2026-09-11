@@ -1,4 +1,4 @@
-/* chat.js — the AI assistant panel.
+/* chat.js: the AI assistant panel.
    Talks to a Cloudflare Worker that holds the API key; the key never reaches the browser.
    Until ENDPOINT is set, the panel stays open but says so instead of pretending. */
 
@@ -76,7 +76,7 @@
 
   function greet() {
     bubble(
-      'Hi — I am ' + P.ai.displayName + ', an AI trained on ' + P.identity.name.split(' ')[0] +
+      'Hi, I am ' + P.ai.displayName + ', an AI trained on ' + P.identity.name.split(' ')[0] +
       "'s CV, projects and notes. Ask me anything about her work.",
       'ai'
     );
@@ -105,9 +105,9 @@
     input.value = '';
     bubble(text, 'me');
 
-    // "Email her for me" and similar — hand off to the real form rather than fake it.
+    // "Email her for me" and similar: hand off to the real form rather than fake it.
     if (/\b(email|contact|reach|get in touch|message her)\b/i.test(text) && text.length < 60) {
-      note('Opening the contact form — that goes straight to her inbox.');
+      note('Opening the contact form. That goes straight to her inbox.');
       setTimeout(() => {
         close();
         document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
@@ -118,7 +118,7 @@
 
     if (!CONFIG.ENDPOINT) {
       note(
-        'My brain is not wired up yet — Mengyi is still deploying it. ' +
+        'My brain is not wired up yet. Mengyi is still deploying it. ' +
         'In the meantime the page below has the real answers, or ' +
         '<a href="#contact">send her a message</a>.'
       );

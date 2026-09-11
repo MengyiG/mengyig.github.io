@@ -1,5 +1,5 @@
 /**
- * AI Mengyi — Cloudflare Worker
+ * AI Mengyi: Cloudflare Worker
  *
  * Holds the Anthropic API key so the browser never sees it, and grounds every
  * answer in data/profile-data.js fetched from the live site. That file stays the
@@ -17,7 +17,7 @@ const MAX_MESSAGE_CHARS = 1000;
 const MAX_TURNS = 20;
 
 /* Coarse in-memory limiter. Workers isolates are short-lived and per-region, so
-   this only blunts casual abuse — pair it with a Cloudflare rate-limiting rule. */
+   this only blunts casual abuse; pair it with a Cloudflare rate-limiting rule. */
 const RATE_LIMIT = { windowMs: 60_000, max: 12 };
 const hits = new Map();
 
@@ -65,7 +65,7 @@ function buildSystem(profileSource) {
       text:
         'You are the AI assistant on Mengyi Guo\'s personal website, answering visitors ' +
         'on her behalf.\n\n' +
-        'Everything below is her profile data — JavaScript source, read it as structured ' +
+        'Everything below is her profile data, as JavaScript source. Read it as structured ' +
         'data. Its `ai` block defines who you are: follow `persona`, obey every rule in ' +
         '`boundaries`, and use `handoff` when someone wants to reach her directly.\n\n' +
         'Two rules that are not in the data:\n' +
