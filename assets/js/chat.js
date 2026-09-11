@@ -38,6 +38,10 @@
   }
 
   document.querySelectorAll('[data-open-chat]').forEach((b) => b.addEventListener('click', open));
+  document.querySelectorAll('[data-ask]').forEach((b) => b.addEventListener('click', () => {
+    open();
+    send(b.dataset.ask);
+  }));
   document.querySelectorAll('[data-close-chat]').forEach((b) => b.addEventListener('click', close));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !chat.hidden) close();

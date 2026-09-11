@@ -66,6 +66,8 @@
 
     <!-- Mascot: click to open the assistant -->
     <div class="mascot-zone">
+      <div class="mascot-stage">
+      <div class="mascot-prompts" data-bind="mascot-prompts"></div>
       <button class="mascot" type="button" data-open-chat aria-label="Talk to AI Mengyi">
         <span class="mascot-bubble">Ask me anything →</span>
         <svg class="mascot-art" viewBox="0 0 260 200" role="img" aria-hidden="true" focusable="false">
@@ -116,6 +118,7 @@
           </g>
         </svg>
       </button>
+      </div>
       <p class="mascot-note">Click to chat with my AI — she is grounded in this page and answers around the clock.</p>
     </div>
   </section>
@@ -144,10 +147,10 @@
   </section>
 
   <!-- ── Projects ─────────────────────────────────────────── -->
-  <section class="section" id="projects">
+  <section class="section section-dark" id="projects">
     <div class="section-head">
       <h2>Projects</h2>
-      <p class="section-note" data-bind="projects-count"></p>
+      <p class="section-note">Side projects, mostly curious rather than useful.</p>
     </div>
     <div class="grid grid-3" data-bind="projects"></div>
   </section>

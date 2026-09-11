@@ -21,15 +21,30 @@
     esc(greet[0]) + ', ' + esc(greet[1]) + ', <span class="zh">' + esc(greet[2]) + '</span>'
   );
   fill('role-line', esc(P.identity.role) + ' · ' + esc(P.identity.company.name));
-  fill('intro', esc(P.intro.long));
-  fill('intro-short', esc(P.intro.short));
+
+  /* Link the employer's name wherever it appears in the intro copy. */
+  const co = P.identity.company;
+  const linkCompany = (text) => esc(text).replace(
+    esc(co.name),
+    '<a class="inline-link" href="' + esc(co.url) + '" target="_blank" rel="noopener">' + esc(co.name) + '</a>'
+  );
+  fill('intro', linkCompany(P.intro.long));
+  fill('intro-short', linkCompany(P.intro.short));
   fill('location', esc(P.identity.location));
   fill('tags', P.tags.map((t) =>
     '<li' + (t.primary ? ' class="is-primary"' : '') + '>' + esc(t.label) + '</li>'
   ).join(''));
 
   const avatar = slot('avatar');
-  if (avatar) avatar.src = P.identity.avatar;
+  if (avatar) {
+    avatar.src = P.identity.avatar;
+    if (P.identity.avatarPosition) avatar.style.objectPosition = P.identity.avatarPosition;
+  }
+
+  /* Speech bubbles around the mascot — each opens the chat with that question. */
+  fill('mascot-prompts', (P.ai.mascotPrompts || []).map((q) =>
+    '<button class="prompt-bubble" type="button" data-ask="' + esc(q) + '">' + esc(q) + '</button>'
+  ).join(''));
 
   /* ── Marquee: every tool, looped twice so the scroll is seamless ── */
   const allTools = P.tools.groups.reduce((acc, g) => acc.concat(g.items), []);
@@ -67,13 +82,11 @@
 
   /* ── Projects ── */
   const projects = P.projects.slice().sort((a, b) => b.year - a.year);
-  const years = projects.map((p) => p.year);
-  fill('projects-count', projects.length + ' repos · ' + Math.min.apply(null, years) + '–' + Math.max.apply(null, years));
   fill('projects', projects.map((p) => {
     const link = p.private
-      ? '<span class="card-link" style="color:var(--ink-3)">Private repo</span>'
+      ? '<span class="card-link" style="color:#918C81">Private repo</span>'
       : '<a class="card-link" href="' + esc(p.repo) + '" target="_blank" rel="noopener">View on GitHub →</a>';
-    return '<article class="card">' +
+    return '<article class="card' + (p.featured ? ' is-featured' : '') + '">' +
       '<div class="proj-head">' +
         '<h3>' + esc(p.name) + '</h3>' +
         '<span class="proj-year">' + esc(p.year) + '</span>' +
@@ -104,25 +117,36 @@
   }).join(''));
 
   /* ── Education ── */
+  const crest = (item, cls) => item.logo
+    ? '<img class="' + cls + '" src="' + esc(item.logo) + '" alt="">'
+    : '<span class="' + cls + '" style="background:' + esc(item.color || '#141414') + '">' + esc(item.mark || '') + '</span>';
+
   fill('education', P.education.map((e) =>
     '<article class="card edu-card">' +
-      '<span class="deg">' + esc(e.degree) + '</span>' +
-      '<span class="school">' + esc(e.school) + '</span>' +
-      '<span class="when">' + esc(e.period) + ' · GPA ' + esc(e.gpa) + '</span>' +
+      crest(e, 'crest') +
+      '<span class="edu-text">' +
+        '<span class="deg">' + esc(e.degree) + '</span>' +
+        '<span class="school">' + esc(e.school) + '</span>' +
+        '<span class="when">' + esc(e.period) + ' · GPA ' + esc(e.gpa) + '</span>' +
+      '</span>' +
     '</article>'
   ).join(''));
 
   fill('certifications', P.certifications.map((c) =>
     '<li>' +
-      '<span class="name">' + esc(c.name) + '</span>' +
-      '<span class="meta">' + esc(c.issuer) + (c.date ? ' · ' + esc(c.date) : '') + '</span>' +
+      crest(c, 'cert-mark') +
+      '<span class="cert-text">' +
+        '<span class="name">' + esc(c.name) + '</span>' +
+        '<span class="meta">' + esc(c.issuer) + (c.date ? ' · ' + esc(c.date) : '') + '</span>' +
+      '</span>' +
     '</li>'
   ).join(''));
 
   /* ── Fun facts ── */
   fill('fun-facts', P.funFacts.map((f) =>
     '<article class="fun-card">' +
-      '<img src="' + esc(f.image) + '" alt="" loading="lazy">' +
+      '<img src="' + esc(f.image) + '" alt="" loading="lazy"' +
+        (f.imagePosition ? ' style="object-position:' + esc(f.imagePosition) + '"' : '') + '>' +
       '<div class="fun-body">' +
         '<span class="fun-emoji">' + esc(f.emoji) + '</span>' +
         '<h3>' + esc(f.title) + '</h3>' +
@@ -133,10 +157,24 @@
 
   /* ── Contact ── */
   const c = P.contact;
+
+  const ICONS = {
+    linkedin: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+    github: 'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 013-.405c1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
+    youtube: 'M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
+  };
+
+  const socialLink = (key, label, url) => url
+    ? '<li><a href="' + esc(url) + '" target="_blank" rel="noopener">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + ICONS[key] + '"/></svg>' +
+        esc(label) +
+      '</a></li>'
+    : '';
+
   fill('contact-links',
-    '<li><a href="' + esc(c.linkedin) + '" target="_blank" rel="noopener">LinkedIn</a></li>' +
-    '<li><a href="' + esc(c.github) + '" target="_blank" rel="noopener">GitHub</a></li>' +
-    (c.youtube ? '<li><a href="' + esc(c.youtube) + '" target="_blank" rel="noopener">YouTube</a></li>' : '')
+    socialLink('linkedin', 'LinkedIn', c.linkedin) +
+    socialLink('github', 'GitHub', c.github) +
+    socialLink('youtube', 'YouTube', c.youtube)
   );
 
   /* ── Footer ── */

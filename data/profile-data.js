@@ -32,6 +32,8 @@ const PROFILE = {
 
     headline: 'I ship systems, and I explain them.',
     avatar: 'images/portrait.jpg',
+    // object-position for the hero crop — she stands right of centre in this frame.
+    avatarPosition: '76% 42%',
   },
 
   /* ── Contact ───────────────────────────────────────────────────── */
@@ -147,25 +149,11 @@ const PROFILE = {
       blurb: 'Pulls structured text out of images and hands it back as clean data.',
     },
     {
-      name: 'MySpringCloudGatewayNacos',
-      repo: 'https://github.com/MengyiG/MySpringCloudGatewayNacos',
-      year: 2024,
-      stack: ['Spring Cloud', 'Nacos'],
-      blurb: 'Service discovery and gateway routing, wired up the way a real microservice estate needs it.',
-    },
-    {
       name: 'MyDockerApp',
       repo: 'https://github.com/MengyiG/MyDockerApp',
       year: 2023,
       stack: ['Docker', 'CI/CD'],
       blurb: 'Containerised service with an end-to-end build and deploy pipeline.',
-    },
-    {
-      name: 'MyAndroidAppDreamCatcher',
-      repo: 'https://github.com/MengyiG/MyAndroidAppDreamCatcher',
-      year: 2023,
-      stack: ['Android', 'Kotlin'],
-      blurb: 'A dream journal for Android — log it before you forget it.',
     },
   ],
 
@@ -245,26 +233,35 @@ const PROFILE = {
   ],
 
   /* ── Education ─────────────────────────────────────────────────── */
+  /* `mark` + `color` draw a typographic crest rather than the school's official
+     logo — university marks are trademarked and licensed. Swap in a real crest
+     by adding `logo: 'images/vt.png'` if you get permission or an official asset. */
   education: [
     {
       degree: 'M.S. Information Technology',
       school: 'Virginia Tech',
       period: 'Aug 2021 – Dec 2023',
       gpa: '4.0 / 4.0',
+      mark: 'VT',
+      color: '#861F41',
     },
     {
       degree: 'M.A. Second Language Education',
       school: 'McGill University',
       period: 'Sep 2015 – Jun 2017',
       gpa: '3.8 / 4.0',
+      mark: 'Mc',
+      color: '#ED1B2F',
     },
   ],
 
+  /* Same reasoning as education. Your AWS and Azure badges on Credly are issued
+     to you and can be used directly — drop the image in and add `logo:`. */
   certifications: [
-    { name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2024' },
-    { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'Microsoft', date: 'February 2024' },
-    { name: 'Software Development Certificate', issuer: 'Virginia Tech', date: 'June 2023' },
-    { name: 'Certified English–Mandarin Interpreter', issuer: 'China', date: '' },
+    { name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2024', mark: 'aws', color: '#FF9900' },
+    { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'Microsoft', date: 'February 2024', mark: 'Az', color: '#0078D4' },
+    { name: 'Software Development Certificate', issuer: 'Virginia Tech', date: 'June 2023', mark: 'VT', color: '#861F41' },
+    { name: 'Certified English–Mandarin Interpreter', issuer: 'China', date: '', mark: '文', color: '#4C6FF5' },
   ],
 
   /* ── Fun facts ─────────────────────────────────────────────────── */
@@ -292,6 +289,7 @@ const PROFILE = {
       title: 'A podcast queue that never empties',
       body: 'When I disconnect from the social network, I reconnect with podcasts.',
       image: 'images/coffee.jpg',
+      imagePosition: 'center 20%',
     },
   ],
 
@@ -350,6 +348,11 @@ const PROFILE = {
       'Never state a salary expectation, notice period, or visa status — offer to pass the question to the real Mengyi instead.',
       'Do not invent projects, employers, dates, or metrics that are not in this file.',
       'Keep answers under roughly 120 words unless asked to go deeper.',
+    ],
+    // Shown as speech bubbles around the mascot on the hero.
+    mascotPrompts: [
+      'Is she a good teammate?',
+      'Tell me a fun fact',
     ],
     suggestedQuestions: [
       'What does she actually build?',
