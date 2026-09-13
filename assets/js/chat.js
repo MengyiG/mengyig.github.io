@@ -6,8 +6,7 @@
   'use strict';
 
   const CONFIG = {
-    // Set this to your deployed Worker URL, e.g. https://ai-mengyi.<subdomain>.workers.dev
-    ENDPOINT: '',
+    ENDPOINT: 'https://ai-mengyi.cold-poetry-98af.workers.dev',
     MAX_TURNS: 10,
   };
 
@@ -76,8 +75,8 @@
 
   function greet() {
     bubble(
-      'Hi, I am ' + P.ai.displayName + ', an AI trained on ' + P.identity.name.split(' ')[0] +
-      "'s CV, projects and notes. Ask me anything about her work.",
+      'Hi, I am ' + P.ai.displayName + ', the AI version of ' + P.identity.name.split(' ')[0] +
+      '. I know my CV, projects and notes, so ask me anything about my work.',
       'ai'
     );
     P.ai.suggestedQuestions.forEach((q) => {
@@ -105,9 +104,9 @@
     input.value = '';
     bubble(text, 'me');
 
-    // "Email her for me" and similar: hand off to the real form rather than fake it.
-    if (/\b(email|contact|reach|get in touch|message her)\b/i.test(text) && text.length < 60) {
-      note('Opening the contact form. That goes straight to her inbox.');
+    // "How can I reach you?" and similar: hand off to the real form rather than fake it.
+    if (/\b(email|contact|reach|get in touch|message you)\b/i.test(text) && text.length < 60) {
+      note('Opening the contact form. That goes straight to my inbox.');
       setTimeout(() => {
         close();
         document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
@@ -118,9 +117,9 @@
 
     if (!CONFIG.ENDPOINT) {
       note(
-        'My brain is not wired up yet. Mengyi is still deploying it. ' +
+        'My brain is not wired up yet. ' +
         'In the meantime the page below has the real answers, or ' +
-        '<a href="#contact">send her a message</a>.'
+        '<a href="#contact">send me a message</a>.'
       );
       return;
     }
@@ -147,7 +146,7 @@
       dots.remove();
       note(
         'Something went wrong on my side. You can ' +
-        '<a href="#contact">message Mengyi directly</a> instead.'
+        '<a href="#contact">message me directly</a> instead.'
       );
     } finally {
       busy = false;

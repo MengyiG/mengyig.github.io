@@ -65,14 +65,14 @@ Deploy prints a URL like `https://ai-mengyi.<subdomain>.workers.dev`. Put it in
 Until it is set, the chat panel opens and says it is not connected yet rather
 than pretending to answer.
 
-**Cost.** The Worker uses `claude-opus-5`. The profile data is cached between
+**Cost.** The Worker uses `claude-haiku-4-5`, about half a cent per exchange. The profile data is cached between
 requests, so a typical exchange is a fraction of a cent. But an open chat box on
 a public page can be abused. The Worker caps message length, history length and
 requests per IP per minute; for real protection add a Cloudflare Rate Limiting
 rule on the Worker route, and set a spend limit in the Anthropic Console.
 
-To trade quality for cost, change `MODEL` in `worker/index.js` to
-`claude-sonnet-5` or `claude-haiku-4-5`.
+For better answers at a higher price, change `MODEL` in `worker/index.js` to
+`claude-sonnet-5` or `claude-opus-5` and redeploy.
 
 ## Where the old site went
 

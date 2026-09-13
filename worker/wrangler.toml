@@ -3,6 +3,10 @@ main = "index.js"
 compatibility_date = "2026-09-01"
 compatibility_flags = ["nodejs_compat"]
 
+workers_dev = true
+# Preview URLs would expose every uploaded version at its own public address.
+preview_urls = false
+
 # ANTHROPIC_API_KEY is a secret, not a var. Set it with:
 #   npx wrangler secret put ANTHROPIC_API_KEY
 # Never put the key in this file.

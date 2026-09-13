@@ -11,7 +11,7 @@ import Anthropic from '@anthropic-ai/sdk';
 const PROFILE_URL = 'https://mengyig.github.io/data/profile-data.js';
 const ALLOWED_ORIGINS = ['https://mengyig.github.io', 'http://localhost:4321'];
 
-const MODEL = 'claude-opus-5';
+const MODEL = 'claude-haiku-4-5';
 const MAX_TOKENS = 1024;
 const MAX_MESSAGE_CHARS = 1000;
 const MAX_TURNS = 20;
@@ -125,7 +125,8 @@ export default {
       const response = await client.messages.create({
         model: MODEL,
         max_tokens: MAX_TOKENS,
-        output_config: { effort: 'low' },
+        // Haiku 4.5 rejects the effort parameter with a 400.
+        ...(MODEL.startsWith('claude-haiku') ? {} : { output_config: { effort: 'low' } }),
         system: buildSystem(profileSource),
         messages,
       });
