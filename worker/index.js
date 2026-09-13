@@ -46,13 +46,16 @@ function json(body, status, origin) {
   });
 }
 
+// Short enough that a pushed profile edit reaches the assistant within minutes.
+const PROFILE_TTL_SECONDS = 300;
 let profileCache = { text: null, at: 0 };
 
 async function loadProfile() {
-  const fresh = Date.now() - profileCache.at < 3_600_000;
+  const fresh = Date.now() - profileCache.at < PROFILE_TTL_SECONDS * 1000;
   if (profileCache.text && fresh) return profileCache.text;
 
-  const res = await fetch(PROFILE_URL, { cf: { cacheTtl: 3600 } });
+  // Bump ?v= to skip a cached copy immediately instead of waiting out the TTL.
+  const res = await fetch(PROFILE_URL + '?v=2', { cf: { cacheTtl: PROFILE_TTL_SECONDS } });
   if (!res.ok) throw new Error('Could not load profile data');
   profileCache = { text: await res.text(), at: Date.now() };
   return profileCache.text;
@@ -135,6 +138,8 @@ export default {
         .filter((block) => block.type === 'text')
         .map((block) => block.text)
         .join('\n')
+        // The prompt forbids em dashes, but smaller models still slip them in.
+        .replace(/\s*—\s*/g, ', ')
         .trim();
 
       return json({ reply }, 200, origin);

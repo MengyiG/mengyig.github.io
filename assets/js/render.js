@@ -21,7 +21,9 @@
       ? '<span style="color:' + esc(g.color) + '">' + esc(g.text) + '</span>'
       : esc(g.text)
   ).join(', '));
-  fill('role-line', esc(P.identity.role) + ' · ' + esc(P.identity.company.name));
+  const wa = P.identity.workAuthorization;
+  fill('role-line', esc(P.identity.role) + ' · ' + esc(P.identity.company.name) +
+    (wa ? ' · <strong>' + esc(wa.emphasis) + '</strong>' : ''));
 
   /* Link the employer's name wherever it appears in the intro copy. */
   const co = P.identity.company;
@@ -32,6 +34,7 @@
   fill('intro', linkCompany(P.intro.long));
   fill('intro-short', linkCompany(P.intro.short));
   fill('location', esc(P.identity.location));
+  fill('work-auth', wa ? esc(wa.text) + '&nbsp;· <strong>' + esc(wa.emphasis) + '</strong>' : '');
   fill('tags', P.tags.map((t) =>
     '<li' + (t.primary ? ' class="is-primary"' : '') + '>' + esc(t.label) + '</li>'
   ).join(''));

@@ -9,7 +9,7 @@ Everything on the page is rendered from [`data/profile-data.js`](data/profile-da
 Nothing is hardcoded in the markup. Edit that file, push, and the site updates.
 
 The AI assistant reads the same file (the Worker fetches it live), so a fact
-corrected there is corrected everywhere at once.
+corrected there reaches the assistant within about five minutes of a push.
 
 ```
 data/profile-data.js   ← edit this

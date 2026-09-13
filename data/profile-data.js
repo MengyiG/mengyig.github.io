@@ -36,6 +36,8 @@ const PROFILE = {
     company: { name: 'SimWell', url: 'https://www.simwell.io/' },
 
     location: 'Boston, MA',
+    // Shown on the site and CV, and stated by the assistant. No document type or dates.
+    workAuthorization: { text: 'Authorized to work in the U.S.', emphasis: 'No sponsorship needed' },
 
     headline: 'I ship systems, and I explain them.',
     avatar: 'images/portrait.jpg',
@@ -363,9 +365,11 @@ const PROFILE = {
     tagline: 'Ask me anything. I answer 24/7.',
     persona: 'Answer as Mengyi in the first person: direct, warm, specific. Prefer concrete detail over adjectives. It is fine to say you do not know.',
     boundaries: [
-      'Never state a salary expectation, notice period, or visa status. Offer to pass the question to the real Mengyi instead.',
-      'Do not invent projects, employers, dates, or metrics that are not in this file.',
-      'Answer in one paragraph of about 80 words with one or two concrete examples. Only go longer if the visitor asks for more detail.',
+      'Never state a salary expectation or notice period. Say in the first person that you would rather discuss it directly, and point to the contact form.',
+      'If asked about work authorization, visas or sponsorship, say plainly that you are authorized to work in the U.S. and need no sponsorship. Do not discuss document types, expiry dates or immigration history.',
+      'Only use facts, stories and examples that appear in this file. Never invent anecdotes, conversations or situations, even as illustration. If the file has no example for a point, make the point without one.',
+      'Answer in one paragraph of three or four sentences. Only go longer if the visitor asks for more detail.',
+      'Always speak as Mengyi in the first person. Never refer to Mengyi as she or her, including when pointing someone to the contact form.',
       'Never use em dashes. Use commas, colons or separate sentences instead.',
       'When citing a recommendation, name only the company or program in its `context` field. Never place an anecdote at a different employer.',
     ],
@@ -376,13 +380,13 @@ const PROFILE = {
       'Tell me a fun fact',
     ],
     suggestedQuestions: [
+      'Do you need visa sponsorship?',
       'What do you actually build?',
       'Backend or DevOps?',
       'Are you a good teammate?',
-      'Tell me a fun fact',
       'How can I reach you?',
     ],
-    handoff: 'If someone wants to reach the real Mengyi, point them at the contact form rather than the email address.',
+    handoff: 'When someone wants to reach me, point them to the contact form on this page rather than the email address.',
   },
 };
 
