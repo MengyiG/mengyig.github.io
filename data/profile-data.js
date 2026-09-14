@@ -93,7 +93,7 @@ const PROFILE = {
   /* In my own words. The assistant tells this story for "where are you from?"
      and "why tech?" questions; nothing here is shown on the page. */
   pathIntoTech: {
-    beforeCanada: 'Certified English-Mandarin interpreter in China.',
+    beforeCanada: 'From 2011 to 2015, during my undergraduate studies in China, I worked many part-time English-Mandarin interpreting jobs, and earned the CATTI Level 3 interpreting certificate in 2014.',
     canada: 'Came to Canada in 2015 for a master\'s in Second Language Education at McGill. I am a permanent resident of Canada.',
     montreal: 'From 2017 to 2021 at Kells Academy in Montréal I handled accounts payable and receivable: sending payments to students around the world, reconciling their accounts, and explaining fees to students and parents from many countries. That work made my communication and people skills strong.',
     toronto: 'When I moved to Toronto in 2021 I did the same work at ILAC, from May to August 2021.',
@@ -107,7 +107,7 @@ const PROFILE = {
     points: [
       {
         title: 'Write it down',
-        body: 'Two years of interpreting taught me that a thing you cannot explain simply, you do not understand yet. I write the design doc before the code, and the runbook before the incident.',
+        body: 'Years of interpreting taught me that a thing you cannot explain simply, you do not understand yet. I write the design doc before the code, and the runbook before the incident.',
       },
       {
         title: 'Own the whole path',
@@ -248,6 +248,19 @@ const PROFILE = {
       webSummary: 'Accounts payable and receivable at Kells Academy in Montreal from 2017 to 2021, then at ILAC in Toronto from May to August 2021: sending payments to students around the world, reconciling accounts, and explaining fees to students and parents from many countries. It is where my communication and people skills got strong.',
       bullets: [],
     },
+    {
+      role: 'English-Mandarin interpreter',
+      company: 'Part-time and freelance',
+      period: '2011 – 2015',
+      start: '2011',
+      end: '2015',
+      location: 'China',
+      current: false,
+      priorCareer: true,
+      stack: ['EN ⇄ 中文', 'Interpreting'],
+      webSummary: 'Many part-time English-Mandarin interpreting jobs through my undergraduate years, and the CATTI Level 3 interpreting certificate in 2014.',
+      bullets: [],
+    },
   ],
 
   /* ── Education ─────────────────────────────────────────────────── */
@@ -279,7 +292,8 @@ const PROFILE = {
     { name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2024', logo: 'images/aws-badge.png' },
     { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'Microsoft', date: 'February 2024', logo: 'images/azure-badge.png' },
     { name: 'Software Development Certificate', issuer: 'Virginia Tech', date: 'June 2023', mark: 'VT', color: '#861F41' },
-    { name: 'Certified English-Mandarin Interpreter', issuer: 'China', date: '', mark: '文', color: '#4C6FF5' },
+    // CATTI: China Accreditation Test for Translators and Interpreters.
+    { name: 'CATTI Level 3 Interpreter', issuer: 'English-Mandarin · China', date: '2014', mark: '文', color: '#4C6FF5' },
   ],
 
   /* ── Fun facts ─────────────────────────────────────────────────── */
@@ -312,8 +326,20 @@ const PROFILE = {
     {
       emoji: '🔊',
       title: 'Three languages',
-      body: 'English, French and Mandarin, plus a certification that says I can switch between two of them live, under pressure.',
+      body: 'English and Mandarin, certified to interpret between them live, plus beginner French from living in Montréal from 2015 to 2021. Je parle un peu français, et j\'apprends encore.',
       image: 'images/curious.jpg',
+    },
+    {
+      emoji: '🏆',
+      title: 'Always up for a contest',
+      body: 'I have entered a lot of competitions over the years, public speaking among them. I have always liked a challenge.',
+      image: 'images/public-speaking.jpg',
+    },
+    {
+      emoji: '🪂',
+      title: 'Jumped out of a plane',
+      body: 'Went skydiving near Toronto in 2022. Same thing that pulled me into tech: I like a challenge.',
+      image: 'images/skydiving.jpg',
     },
     {
       emoji: '🎙',
