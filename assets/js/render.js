@@ -202,7 +202,6 @@
 
   /* ── Footer ── */
   fill('footer-name', '© ' + new Date().getFullYear() + ' ' + esc(P.identity.name));
-  fill('footer-meta', 'Built from one data file · updated ' + esc(P.meta.updated));
 
   /* ── Chat header ── */
   fill('chat-name', esc(P.ai.displayName));
