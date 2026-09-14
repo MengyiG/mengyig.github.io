@@ -69,18 +69,21 @@
     '</article>'
   ).join(''));
 
+  /* Quotes are excerpts, so every card links to the full recommendations. */
+  const recUrl = esc(P.recommendationsUrl || P.contact.linkedin);
   fill('recommendations', P.recommendations.map((r) =>
     '<figure class="quote">' +
       '<blockquote>' + esc(r.quote) + '</blockquote>' +
+      '<a class="quote-more" href="' + recUrl + '" target="_blank" rel="noopener">Read more →</a>' +
       '<figcaption>' +
         '<span class="who">' + esc(r.author) + '</span>' +
-        '<span class="what">' + esc(r.title) + '</span>' +
+        '<span class="what" title="' + esc(r.title) + '">' + esc(r.title) + '</span>' +
       '</figcaption>' +
     '</figure>'
   ).join(''));
 
   fill('quotes-more',
-    '<a href="' + esc(P.recommendationsUrl || P.contact.linkedin) + '" target="_blank" rel="noopener">' +
+    '<a href="' + recUrl + '" target="_blank" rel="noopener">' +
       'and more on LinkedIn →' +
     '</a>');
 
@@ -229,7 +232,10 @@
       return;
     }
 
-    if (!c.formAccessKey) {
+    const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
+    const accessKey = (isLocal && c.formAccessKeyLocal) || c.formAccessKey;
+
+    if (!accessKey) {
       status.textContent = 'The form is not connected yet. Email ' + c.email + ' in the meantime.';
       status.classList.add('is-err');
       return;
@@ -240,7 +246,7 @@
     status.textContent = 'Sending…';
 
     const body = new FormData(form);
-    body.append('access_key', c.formAccessKey);
+    body.append('access_key', accessKey);
     body.append('subject', 'New message from mengyig.github.io');
     body.append('from_name', 'mengyig.github.io');
 

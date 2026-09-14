@@ -47,7 +47,7 @@ const PROFILE = {
 
   /* ── Contact ───────────────────────────────────────────────────── */
   contact: {
-    email: 'mengyi.guo.dev@gmail.com',
+    email: 'yiii9292@gmail.com',
 
     // No phone number here on purpose: this file is served publicly at
     // /data/profile-data.js, so anything in it is readable by anyone.
@@ -59,7 +59,9 @@ const PROFILE = {
 
     // Web3Forms access key, set after signing up. The key is safe to expose publicly.
     formEndpoint: 'https://api.web3forms.com/submit',
-    formAccessKey: '',
+    formAccessKey: '67b1ca47-e9d0-4792-96a3-b0beae4cfbfe',
+    // Separate key used when the page is served from localhost.
+    formAccessKeyLocal: '5e88b01e-5ace-4e4a-b1a8-2b609b4f620e',
   },
 
   /* ── Hero tags ─────────────────────────────────────────────────── */
