@@ -228,7 +228,7 @@ a{ color:inherit; }
 .lead-quote{
   font-family:var(--font-display); font-weight:600;
   font-size:clamp(24px,3.4vw,34px); line-height:1.28; letter-spacing:-.022em;
-  max-width:24ch; margin:0 0 40px;
+  margin:0 0 40px;
 }
 .lead-quote em{ font-style:normal; background:var(--marigold); padding:0 8px; border-radius:7px; }
 
@@ -419,6 +419,39 @@ img.cert-mark{ border-radius:0; object-fit:contain; }
 }
 .contact-links a:hover{ background:var(--card); border-color:var(--line); }
 .contact-links svg{ width:20px; height:20px; flex:none; fill:currentColor; }
+
+/* The gang fills the space under the links. Every bark cycle is 3.6s: the
+   mouth opens twice, the head tips up, and the bubble says one word per bark. */
+.contact-gang{ position:relative; width:min(360px,100%); margin-top:40px; }
+.contact-gang svg{ display:block; width:100%; height:auto; overflow:visible; }
+.gang-person{ animation:bob 3.4s ease-in-out infinite alternate; }
+.gang-eyes{ transform-box:fill-box; transform-origin:center; animation:blink 5.2s step-end infinite; }
+.gang-tail{ transform-box:fill-box; transform-origin:50% 100%; animation:wag .55s ease-in-out infinite alternate; }
+.gang-head{ transform-box:fill-box; transform-origin:30% 90%; animation:nod 3.6s ease-in-out infinite; }
+.gang-mouth{ transform-box:fill-box; transform-origin:50% 0; transform:scaleY(.2); animation:bark 3.6s ease-in-out infinite; }
+.woof{
+  position:absolute; right:8%; bottom:46%;
+  background:var(--ink); color:var(--ground);
+  font-size:13px; font-weight:600; white-space:nowrap;
+  padding:7px 13px; border-radius:99px;
+  transform-origin:85% 100%; animation:woof 3.6s ease-out infinite;
+}
+.woof::after{
+  content:""; position:absolute; right:18px; bottom:-6px;
+  border:7px solid transparent; border-top-color:var(--ink); border-bottom:0;
+}
+.woof b{ font-weight:inherit; }
+.woof b + b{ animation:woof-2 3.6s step-end infinite; }
+@keyframes bob{ from{ transform:translateY(0); } to{ transform:translateY(-5px); } }
+@keyframes nod{ 0%,6%,18%,24%,36%,100%{ transform:rotate(0); } 11%,30%{ transform:rotate(-8deg); } }
+@keyframes bark{ 0%,6%,18%,24%,36%,100%{ transform:scaleY(.2); } 11%,30%{ transform:scaleY(1); } }
+@keyframes woof{
+  0%,5%{ opacity:0; transform:scale(.4); }
+  11%{ opacity:1; transform:scale(1.08); }
+  15%,50%{ opacity:1; transform:scale(1); }
+  58%,100%{ opacity:0; transform:scale(.85); }
+}
+@keyframes woof-2{ 0%{ opacity:0; } 24%{ opacity:1; } }
 
 .contact-form{ display:flex; flex-direction:column; gap:16px; background:var(--card);
   border:1px solid var(--line); border-radius:var(--radius-lg); padding:28px; }
