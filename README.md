@@ -74,6 +74,30 @@ rule on the Worker route, and set a spend limit in the Anthropic Console.
 For better answers at a higher price, change `MODEL` in `worker/index.js` to
 `claude-sonnet-5` or `claude-opus-5` and redeploy.
 
+### 3. Visit log
+
+The Worker also records who visits: every page view (the page sends one
+request to `/visit`) and every question asked to AI Mengyi, each with the IP
+address and Cloudflare's approximate city, country and network. Localhost
+previews are not logged. The footer tells visitors this happens.
+
+It lives in a Cloudflare D1 database named `mengyi-visits`, bound as `DB`.
+One-time setup, from `worker/`:
+
+```bash
+npx wrangler secret put ADMIN_TOKEN        # choose the dashboard password
+npx wrangler deploy                        # creates the D1 database on first deploy
+npx wrangler d1 migrations apply mengyi-visits --remote
+```
+
+Then open `https://ai-mengyi.<subdomain>.workers.dev/admin` and enter the
+password. An IP address points to a network (an ISP or sometimes a company),
+not to a person.
+
+To try it locally, put `ADMIN_TOKEN=anything` in `worker/.dev.vars` (ignored by
+git), then run `npx wrangler d1 migrations apply mengyi-visits --local` and
+`npx wrangler dev`.
+
 ## Where the old site went
 
 The previous version of this site is archived, with its full history, at

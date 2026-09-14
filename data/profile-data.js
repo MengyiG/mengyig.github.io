@@ -19,6 +19,8 @@ const PROFILE = {
     updated: '2026-09-11',
     siteTitle: 'Mengyi Guo',
     siteDescription: 'Full-stack developer building distributed backends and the cloud infrastructure under them.',
+    // Shown in the footer. The Worker logs page views and chat questions with IP and approximate location.
+    privacyNote: 'This site logs visits and questions asked to AI Mengyi, with IP address and approximate location.',
   },
 
   /* ── Identity ──────────────────────────────────────────────────── */

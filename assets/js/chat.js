@@ -19,6 +19,18 @@
   const form = $('#chatForm');
   const input = $('#chatInput');
 
+  /* ── Visit log: one beacon per page view; the Worker adds IP and location.
+     Plain text keeps it a simple request with no CORS preflight. Skipped on
+     localhost so local previews stay out of the log. ── */
+  if (CONFIG.ENDPOINT && !['localhost', '127.0.0.1'].includes(location.hostname)) {
+    fetch(CONFIG.ENDPOINT + '/visit', {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ path: location.pathname + location.hash, referrer: document.referrer }),
+    }).catch(() => {});
+  }
+
   let history = [];
   let busy = false;
   let lastFocus = null;

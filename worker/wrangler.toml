@@ -10,3 +10,12 @@ preview_urls = false
 # ANTHROPIC_API_KEY is a secret, not a var. Set it with:
 #   npx wrangler secret put ANTHROPIC_API_KEY
 # Never put the key in this file.
+#
+# ADMIN_TOKEN is the password for /admin, the visit log. Also a secret:
+#   npx wrangler secret put ADMIN_TOKEN
+
+# Visit log: page views and questions asked to the assistant.
+[[d1_databases]]
+binding = "DB"
+database_name = "mengyi-visits"
+migrations_dir = "migrations"

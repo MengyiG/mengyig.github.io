@@ -202,6 +202,7 @@
 
   /* ── Footer ── */
   fill('footer-name', '© ' + new Date().getFullYear() + ' ' + esc(P.identity.name));
+  fill('footer-privacy', esc(P.meta.privacyNote || ''));
 
   /* ── Chat header ── */
   fill('chat-name', esc(P.ai.displayName));
