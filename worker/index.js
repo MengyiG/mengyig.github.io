@@ -8,7 +8,9 @@
  * It also keeps a visit log in D1 (binding DB): every page view the site reports
  * to POST /visit, and every question asked to the assistant, each with the
  * visitor's IP and Cloudflare's approximate location and network.
- * GET /admin shows the log to whoever holds the ADMIN_TOKEN secret.
+ * GET /admin shows the log to whoever holds the ADMIN_TOKEN secret. Visits and
+ * questions from the owner's own browsers (opened once with ?me on the site)
+ * are stored with is_me = 1 and shown apart from everyone else.
  */
 
 import Anthropic from '@anthropic-ai/sdk';
@@ -102,23 +104,23 @@ function visitor(request) {
 }
 
 // Logging must never break the page or the chat, so failures only reach the logs.
-async function logVisit(env, who, path, referrer, userAgent) {
+async function logVisit(env, who, path, referrer, userAgent, isMe) {
   if (!env.DB) return;
   try {
     await env.DB.prepare(
-      'INSERT INTO visits (ip, country, region, city, org, path, referrer, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-    ).bind(who.ip, who.country, who.region, who.city, who.org, path, referrer, userAgent).run();
+      'INSERT INTO visits (ip, country, region, city, org, path, referrer, user_agent, is_me) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    ).bind(who.ip, who.country, who.region, who.city, who.org, path, referrer, userAgent, isMe).run();
   } catch (err) {
     console.error('visit log failed', err);
   }
 }
 
-async function logQuestion(env, who, question) {
+async function logQuestion(env, who, question, isMe) {
   if (!env.DB) return;
   try {
     await env.DB.prepare(
-      'INSERT INTO questions (ip, country, region, city, org, question) VALUES (?, ?, ?, ?, ?, ?)'
-    ).bind(who.ip, who.country, who.region, who.city, who.org, question).run();
+      'INSERT INTO questions (ip, country, region, city, org, question, is_me) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    ).bind(who.ip, who.country, who.region, who.city, who.org, question, isMe).run();
   } catch (err) {
     console.error('question log failed', err);
   }
@@ -134,7 +136,8 @@ async function handleVisit(request, env, ctx, origin) {
   const path = String(data.path || '/').slice(0, 300);
   const referrer = String(data.referrer || '').slice(0, 500);
   const userAgent = (request.headers.get('User-Agent') || '').slice(0, 400);
-  ctx.waitUntil(logVisit(env, visitor(request), path, referrer, userAgent));
+  const isMe = data.me === true ? 1 : 0;
+  ctx.waitUntil(logVisit(env, visitor(request), path, referrer, userAgent, isMe));
   return new Response(null, { status: 204, headers: corsHeaders(origin) });
 }
 
@@ -158,21 +161,29 @@ async function handleAdminData(request, env) {
     return new Response(JSON.stringify({ error: 'No D1 database is bound as DB.' }), { status: 503, headers: noStore });
   }
 
+  // Everything counted and listed for visitors leaves out the owner's own rows.
   const since = (days) => `strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-${days} days')`;
-  const [summary, visits, questions] = await env.DB.batch([
+  const [summary, visits, questions, myVisits, myQuestions] = await env.DB.batch([
     env.DB.prepare(
       `SELECT
-         (SELECT COUNT(*) FROM visits WHERE ts >= ${since(1)}) AS visits_24h,
-         (SELECT COUNT(*) FROM visits WHERE ts >= ${since(7)}) AS visits_7d,
-         (SELECT COUNT(DISTINCT ip) FROM visits WHERE ts >= ${since(7)}) AS visitors_7d,
-         (SELECT COUNT(*) FROM questions WHERE ts >= ${since(7)}) AS questions_7d`
+         (SELECT COUNT(*) FROM visits WHERE is_me = 0 AND ts >= ${since(1)}) AS visits_24h,
+         (SELECT COUNT(*) FROM visits WHERE is_me = 0 AND ts >= ${since(7)}) AS visits_7d,
+         (SELECT COUNT(DISTINCT ip) FROM visits WHERE is_me = 0 AND ts >= ${since(7)}) AS visitors_7d,
+         (SELECT COUNT(*) FROM questions WHERE is_me = 0 AND ts >= ${since(7)}) AS questions_7d`
     ),
-    env.DB.prepare('SELECT ts, ip, country, region, city, org, path, referrer, user_agent FROM visits ORDER BY id DESC LIMIT 300'),
-    env.DB.prepare('SELECT ts, ip, country, region, city, org, question FROM questions ORDER BY id DESC LIMIT 200'),
+    env.DB.prepare('SELECT ts, ip, country, region, city, org, path, referrer, user_agent FROM visits WHERE is_me = 0 ORDER BY id DESC LIMIT 300'),
+    env.DB.prepare('SELECT ts, ip, country, region, city, org, question FROM questions WHERE is_me = 0 ORDER BY id DESC LIMIT 200'),
+    env.DB.prepare('SELECT ts, path, user_agent FROM visits WHERE is_me = 1 ORDER BY id DESC LIMIT 100'),
+    env.DB.prepare('SELECT ts, question FROM questions WHERE is_me = 1 ORDER BY id DESC LIMIT 100'),
   ]);
 
   return new Response(
-    JSON.stringify({ summary: summary.results[0], visits: visits.results, questions: questions.results }),
+    JSON.stringify({
+      summary: summary.results[0],
+      visits: visits.results,
+      questions: questions.results,
+      me: { visits: myVisits.results, questions: myQuestions.results },
+    }),
     { status: 200, headers: noStore }
   );
 }
@@ -211,6 +222,12 @@ const ADMIN_PAGE = `<!DOCTYPE html>
   td.muted{ color:var(--ink-3); }
   td.wrap{ max-width:320px; overflow-wrap:anywhere; }
   .tag{ display:inline-block; font-size:11.5px; padding:1px 8px; border-radius:99px; background:#F1EFEA; color:var(--ink-3); }
+  details.me{ margin-top:34px; background:#F7F5F0; border:1px dashed var(--line); border-radius:16px; padding:4px 16px 16px; }
+  details.me summary{ cursor:pointer; font-weight:600; font-size:16px; padding:12px 0; }
+  details.me summary span{ color:var(--ink-3); font-weight:400; font-size:13.5px; margin-left:6px; }
+  details.me h3{ font-size:13.5px; margin:16px 0 8px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.06em; }
+  details.me .scroll table{ min-width:520px; }
+  code{ background:#EAE7E0; padding:1px 6px; border-radius:6px; font-size:12.5px; }
   [hidden]{ display:none !important; }
 </style>
 </head>
@@ -230,6 +247,15 @@ const ADMIN_PAGE = `<!DOCTYPE html>
     <div class="scroll"><table><thead><tr><th>Time</th><th>Place</th><th>Network</th><th>IP</th><th>Question</th></tr></thead><tbody id="questions"></tbody></table></div>
     <h2>Page views</h2>
     <div class="scroll"><table><thead><tr><th>Time</th><th>Place</th><th>Network</th><th>IP</th><th>Page</th><th>Came from</th><th>Device</th></tr></thead><tbody id="visits"></tbody></table></div>
+
+    <details class="me">
+      <summary>Myself<span id="meCount"></span></summary>
+      <p class="note">Browsers opened once with <code>mengyig.github.io/?me</code>. Not counted above. <code>?me=off</code> unmarks a browser.</p>
+      <h3>My page views</h3>
+      <div class="scroll"><table><thead><tr><th>Time</th><th>Page</th><th>Device</th></tr></thead><tbody id="myVisits"></tbody></table></div>
+      <h3>My questions</h3>
+      <div class="scroll"><table><thead><tr><th>Time</th><th>Question</th></tr></thead><tbody id="myQuestions"></tbody></table></div>
+    </details>
   </section>
 </main>
 <script>
@@ -268,6 +294,15 @@ const ADMIN_PAGE = `<!DOCTYPE html>
       cell(when(v.ts)), cell(place(v)), cell(v.org || 'Unknown', 'muted'), cell(v.ip, 'muted'),
       cell(v.path || '/'), cell(v.referrer || 'Direct', 'wrap muted'), cell(device(v.user_agent)),
     ])) : [row([cell('No visits yet.', 'muted')])]));
+
+    const me = data.me || { visits: [], questions: [] };
+    $('meCount').textContent = me.visits.length + ' page views · ' + me.questions.length + ' questions';
+    $('myVisits').replaceChildren(...(me.visits.length ? me.visits.map((v) => row([
+      cell(when(v.ts)), cell(v.path || '/'), cell(device(v.user_agent)),
+    ])) : [row([cell('Nothing yet.', 'muted')])]));
+    $('myQuestions').replaceChildren(...(me.questions.length ? me.questions.map((q) => row([
+      cell(when(q.ts)), cell(q.question, 'wrap'),
+    ])) : [row([cell('Nothing yet.', 'muted')])]));
 
     $('data').hidden = false;
   }
@@ -354,7 +389,8 @@ export default {
       return json({ error: 'Last message must be from the visitor.' }, 400, origin);
     }
 
-    ctx.waitUntil(logQuestion(env, visitor(request), messages[messages.length - 1].content));
+    const isMe = body.me === true ? 1 : 0;
+    ctx.waitUntil(logQuestion(env, visitor(request), messages[messages.length - 1].content, isMe));
 
     try {
       const profileSource = await loadProfile();

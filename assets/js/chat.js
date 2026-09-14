@@ -19,6 +19,26 @@
   const form = $('#chatForm');
   const input = $('#chatInput');
 
+  /* ── "This is me": opening the site once with ?me marks this browser as the
+     owner's, so the visit log keeps its visits and questions apart. ?me=off
+     clears the mark. The parameter is removed from the address bar either way. ── */
+  const ME_KEY = 'mengyi-me';
+  let isMe = false;
+  try {
+    const params = new URLSearchParams(location.search);
+    if (params.has('me')) {
+      if (params.get('me') === 'off') localStorage.removeItem(ME_KEY);
+      else localStorage.setItem(ME_KEY, '1');
+      params.delete('me');
+      const query = params.toString();
+      // window.history: this file has its own `history` (the chat log) further down.
+      window.history.replaceState(null, '', location.pathname + (query ? '?' + query : '') + location.hash);
+    }
+    isMe = localStorage.getItem(ME_KEY) === '1';
+  } catch (err) {
+    // Storage can be blocked; the visit is then logged like any other.
+  }
+
   /* ── Visit log: one beacon per page view; the Worker adds IP and location.
      Plain text keeps it a simple request with no CORS preflight. Skipped on
      localhost so local previews stay out of the log. ── */
@@ -27,7 +47,7 @@
       method: 'POST',
       keepalive: true,
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ path: location.pathname + location.hash, referrer: document.referrer }),
+      body: JSON.stringify({ path: location.pathname + location.hash, referrer: document.referrer, me: isMe }),
     }).catch(() => {});
   }
 
@@ -157,7 +177,7 @@
       const res = await fetch(CONFIG.ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history.slice(-CONFIG.MAX_TURNS * 2) }),
+        body: JSON.stringify({ messages: history.slice(-CONFIG.MAX_TURNS * 2), me: isMe }),
       });
 
       if (!res.ok) throw new Error('HTTP ' + res.status);

@@ -94,6 +94,10 @@ Then open `https://ai-mengyi.<subdomain>.workers.dev/admin` and enter the
 password. An IP address points to a network (an ISP or sometimes a company),
 not to a person.
 
+To keep your own visits out of the numbers, open `https://mengyig.github.io/?me`
+once in each of your browsers. Those visits and questions then appear under
+"Myself" on the dashboard instead. `?me=off` removes the mark.
+
 To try it locally, put `ADMIN_TOKEN=anything` in `worker/.dev.vars` (ignored by
 git), then run `npx wrangler d1 migrations apply mengyi-visits --local` and
 `npx wrangler dev`.
