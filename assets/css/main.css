@@ -132,11 +132,11 @@ a{ color:inherit; }
 .inline-link:hover{ background:var(--blossom); border-bottom-color:var(--ink); color:var(--ink); }
 
 /* One line, always: if the column is too narrow the row scrolls sideways. */
-.tags{ display:flex; flex-wrap:nowrap; gap:7px; margin-top:24px; overflow-x:auto; scrollbar-width:none; }
+.tags{ display:flex; flex-wrap:nowrap; gap:6px; margin-top:24px; overflow-x:auto; scrollbar-width:none; }
 .tags::-webkit-scrollbar{ display:none; }
 .tags li{
   flex:none; white-space:nowrap;
-  font-size:12.5px; padding:6px 12px; border-radius:99px;
+  font-size:12.5px; padding:6px 10px; border-radius:99px;
   background:var(--card); border:1px solid var(--line);
 }
 .tags li.is-primary{ background:var(--ink); color:var(--ground); border-color:var(--ink); }
@@ -156,7 +156,7 @@ a{ color:inherit; }
 .ask-card{
   position:relative; margin-top:28px; max-width:630px;
   background:var(--card); border:1px solid var(--ink); border-radius:var(--radius-lg);
-  padding:18px 18px 16px; box-shadow:0 6px 0 var(--ink);
+  padding:18px 18px 20px; box-shadow:0 6px 0 var(--ink);
 }
 .ask-head{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
 .ask-avatar{ position:relative; flex:none; width:50px; height:50px; border-radius:50%; background:var(--blossom); border:1px solid var(--ink); }
@@ -182,8 +182,9 @@ a{ color:inherit; }
 }
 .ask button:hover{ transform:translateX(2px); }
 
-/* Right padding keeps the chips clear of the dog in the corner. */
-.q-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; padding-right:158px; }
+/* No right padding: the top row runs full width, and the dog steps partly out
+   of the card so the last row of questions stays clear. */
+.q-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
 .q-chips button{
   font-family:inherit; font-size:13px; cursor:pointer; color:var(--ink-2);
   background:var(--card); border:1px solid var(--line); border-radius:99px; padding:7px 13px;
@@ -191,7 +192,7 @@ a{ color:inherit; }
 }
 .q-chips button:hover{ border-color:var(--ink); color:var(--ink); }
 
-.ask-dog{ position:absolute; right:14px; bottom:8px; width:152px; height:auto; overflow:visible; pointer-events:none; }
+.ask-dog{ position:absolute; right:-40px; bottom:4px; width:152px; height:auto; overflow:visible; pointer-events:none; }
 .ask-dog-tail{ transform-box:fill-box; transform-origin:50% 100%; animation:wag .55s ease-in-out infinite alternate; }
 @keyframes wag{ from{ transform:rotate(-24deg); } to{ transform:rotate(22deg); } }
 @keyframes blink{ 0%,94%{ transform:scaleY(1); } 96%,98%{ transform:scaleY(.12); } 100%{ transform:scaleY(1); } }
@@ -534,10 +535,11 @@ img.cert-mark{ border-radius:0; object-fit:contain; }
   .hero-intro-short{ display:block; }
 }
 
-/* Too narrow to share a row with the dog: chips take the width, the dog walks below. */
-@media (max-width:640px){
-  .q-chips{ padding-right:0; }
+/* Where a dog stepping out of the card would hit the portrait or the screen edge,
+   it walks below the questions instead. */
+@media (min-width:941px) and (max-width:1180px), (max-width:720px){
   .ask-card{ padding-bottom:70px; }
+  .ask-dog{ right:14px; }
 }
 
 @media (max-width:940px){

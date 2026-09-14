@@ -36,8 +36,17 @@ const PROFILE = {
     company: { name: 'SimWell', url: 'https://www.simwell.io/' },
 
     location: 'Boston, MA',
+    // Where I am from and where I have lived, for "where are you from?" questions.
+    origin: 'China',
+    livedIn: [
+      { place: 'Montréal, QC', from: '2015', to: '2021', note: 'Moved abroad in 2015 to study at McGill.' },
+      { place: 'Toronto, ON', from: '2021', to: '2026' },
+      { place: 'Boston, MA', from: '2026-08', to: null, note: 'Moved in August 2026.' },
+    ],
     // Shown on the site and CV, and stated by the assistant. No document type or dates.
     workAuthorization: { text: 'Authorized to work in the U.S.', emphasis: 'No sponsorship needed' },
+    // Stated by the assistant when asked where I am from or about my status.
+    canadianStatus: 'Permanent resident of Canada',
 
     headline: 'I ship systems, and I explain them.',
     avatar: 'images/portrait.jpg',
@@ -68,16 +77,16 @@ const PROFILE = {
   tags: [
     { label: 'Backend', primary: true },
     { label: 'DevOps & Cloud', primary: true },
-    { label: 'Java 17 · Spring Boot' },
     { label: 'Azure AKS' },
     { label: 'Terraform · Flux' },
     { label: 'EN · 中文' },
+    { label: 'Toronto · Montréal' },
   ],
 
   /* ── Intro copy ────────────────────────────────────────────────── */
   intro: {
     short: 'Full-stack developer at SimWell. I build distributed backends on Java and Spring Boot, then run them on Azure Kubernetes with Terraform and Flux.',
-    long: 'Full-stack developer at SimWell, where I am the primary engineer across the whole platform: backend services, the cloud infrastructure under them, testing, operations, and talking to clients directly. I came to engineering from language teaching: I hold a master\'s in Second Language Education from McGill and worked as a certified English-Mandarin interpreter before a second master\'s in Information Technology at Virginia Tech.',
+    long: 'Full-stack developer at SimWell, where I am the primary engineer across the whole platform: backend services and the cloud infrastructure under them. I hold a master\'s in Second Language Education from McGill and worked as a certified English-Mandarin interpreter before a second master\'s in Information Technology at Virginia Tech.',
   },
 
   /* ── My philosophy ─────────────────────────────────────────────── */
@@ -111,8 +120,7 @@ const PROFILE = {
     // What I am actively following right now. This is the part that should change often.
     trends: [
       { name: 'Agentic coding', note: 'Building with the Anthropic Java SDK at work; running Claude Code on my own projects daily.' },
-      { name: 'RAG evaluation', note: 'Less about retrieval tricks, more about how you know the answer was right.' },
-      { name: 'MCP', note: 'Model Context Protocol servers as the clean way to give a model real tools.' },
+      { name: 'Containerization', note: 'The same container from local development to Azure: built and run locally, pushed to ACR, deployed on AKS.' },
       { name: 'Platform engineering', note: 'GitOps all the way down. If it is not in the repo, it does not exist.' },
     ],
   },
@@ -200,7 +208,8 @@ const PROFILE = {
     },
     {
       role: 'Software Engineer Intern',
-      company: 'CAE',
+      // Presagis is part of CAE; same internship, so recommendations may name either.
+      company: 'Presagis (CAE)',
       period: 'Sep 2022 – Dec 2022',
       start: '2022-09',
       end: '2022-12',
@@ -368,7 +377,9 @@ const PROFILE = {
     persona: 'Answer as Mengyi in the first person: direct, warm, specific. Prefer concrete detail over adjectives. It is fine to say you do not know.',
     boundaries: [
       'Never state a salary expectation or notice period. Say in the first person that you would rather discuss it directly, and point to the contact form.',
-      'If asked about work authorization, visas or sponsorship, say plainly that you are authorized to work in the U.S. and need no sponsorship. Do not discuss document types, expiry dates or immigration history.',
+      'If asked about work authorization, visas or sponsorship, say plainly that you are authorized to work in the U.S. and need no sponsorship. You may also say you are a permanent resident of Canada. Do not discuss U.S. document types, expiry dates or any other immigration details.',
+      'When asked where you are from, tell the path into software in three or four sentences: originally from China, came to Canada in 2015 to study at McGill, a permanent resident of Canada, software engineering internships in Montréal and Toronto (name them from the `work` entries), a master\'s in Information Technology at Virginia Tech, and now based in Boston as a full-stack developer at SimWell. Interpreting and teaching get half a sentence at most, or none.',
+      'Never infer a city, campus, country or reason that is not written in this file. For example, do not say where Virginia Tech is, and do not explain why you moved into tech.',
       'Only use facts, stories and examples that appear in this file. Never invent anecdotes, conversations or situations, even as illustration. If the file has no example for a point, make the point without one.',
       'Answer in one paragraph of three or four sentences. Only go longer if the visitor asks for more detail.',
       'Always speak as Mengyi in the first person. Never refer to Mengyi as she or her, including when pointing someone to the contact form.',
@@ -382,6 +393,7 @@ const PROFILE = {
       'Do you need visa sponsorship?',
       'Are you a good teammate?',
       'Tell me a fun fact',
+      'Where are you from?',
     ],
     suggestedQuestions: [
       'Do you need visa sponsorship?',
