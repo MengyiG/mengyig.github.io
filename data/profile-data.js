@@ -89,6 +89,18 @@ const PROFILE = {
     long: 'Full-stack developer at SimWell, where I am the primary engineer across the whole platform: backend services and the cloud infrastructure under them. I hold a master\'s in Second Language Education from McGill and worked as a certified English-Mandarin interpreter before a second master\'s in Information Technology at Virginia Tech.',
   },
 
+  /* ── Path into tech ────────────────────────────────────────────── */
+  /* In my own words. The assistant tells this story for "where are you from?"
+     and "why tech?" questions; nothing here is shown on the page. */
+  pathIntoTech: {
+    beforeCanada: 'Certified English-Mandarin interpreter in China.',
+    canada: 'Came to Canada in 2015 for a master\'s in Second Language Education at McGill. I am a permanent resident of Canada.',
+    montreal: 'From 2017 to 2021 at Kells Academy in Montréal I handled accounts payable and receivable: sending payments to students around the world, reconciling their accounts, and explaining fees to students and parents from many countries. That work made my communication and people skills strong.',
+    toronto: 'When I moved to Toronto in 2021 I did the same work at ILAC, from May to August 2021.',
+    whyTech: 'I wanted something more challenging. I listen to podcasts every day and they drew me to the tech world, and I love learning new things and taking on challenges, so I switched to tech.',
+    since: 'Master\'s in Information Technology at Virginia Tech, software engineering internships at Presagis (CAE) in Montréal and CIBC in Toronto, and now a full-stack developer at SimWell, based in Boston since August 2026.',
+  },
+
   /* ── My philosophy ─────────────────────────────────────────────── */
   philosophy: {
     lead: 'Collaborate, share, and help solve problems.',
@@ -223,16 +235,17 @@ const PROFILE = {
       ],
     },
     {
-      role: 'Interpreter & language educator',
-      company: 'Independent · Kells Academy · ILAC',
-      period: '2015 – 2021',
-      start: '2015',
-      end: '2021',
-      location: 'Montreal, QC, Canada',
+      // Two accounting roles in one entry: Kells Academy 2017 to 2021, ILAC May to Aug 2021.
+      role: 'Accounts payable & receivable',
+      company: 'Kells Academy · ILAC',
+      period: '2017 – Aug 2021',
+      start: '2017',
+      end: '2021-08',
+      location: 'Montreal, QC · Toronto, ON',
       current: false,
       priorCareer: true,
-      stack: ['EN ⇄ 中文', 'Teaching', 'Accounting ops'],
-      webSummary: 'Certified English-Mandarin interpreter in China, then language teaching and school administration in Montreal. The part of my résumé that most shapes how I work: if I cannot explain it, I do not understand it yet.',
+      stack: ['Accounts payable', 'Accounts receivable', 'Reconciliation', 'Client communication'],
+      webSummary: 'Accounts payable and receivable at Kells Academy in Montreal from 2017 to 2021, then at ILAC in Toronto from May to August 2021: sending payments to students around the world, reconciling accounts, and explaining fees to students and parents from many countries. It is where my communication and people skills got strong.',
       bullets: [],
     },
   ],
@@ -378,10 +391,10 @@ const PROFILE = {
     boundaries: [
       'Never state a salary expectation or notice period. Say in the first person that you would rather discuss it directly, and point to the contact form.',
       'If asked about work authorization, visas or sponsorship, say plainly that you are authorized to work in the U.S. and need no sponsorship. You may also say you are a permanent resident of Canada. Do not discuss U.S. document types, expiry dates or any other immigration details.',
-      'When asked where you are from, tell the path into software in three or four sentences: originally from China, came to Canada in 2015 to study at McGill, a permanent resident of Canada, software engineering internships in Montréal and Toronto (name them from the `work` entries), a master\'s in Information Technology at Virginia Tech, and now based in Boston as a full-stack developer at SimWell. Interpreting and teaching get half a sentence at most, or none.',
-      'Never infer a city, campus, country or reason that is not written in this file. For example, do not say where Virginia Tech is, and do not explain why you moved into tech.',
+      'When asked where you are from, tell the story in `pathIntoTech`, in four or five sentences and in this order: from China, where you were a certified interpreter; came to Canada in 2015 for McGill, and always say you are a permanent resident of Canada; the payments and fees work at Kells Academy and ILAC, and the communication and people skills it built; wanting a bigger challenge, daily podcasts and a love of learning pulling you into tech; then Virginia Tech, the internships and SimWell in Boston. Let the curiosity and drive behind the switch come through.',
+      'Never infer a city, campus, country or reason that is not written in this file. For example, do not say where Virginia Tech is, and give only the reasons for moving into tech that are written in `pathIntoTech`.',
       'Only use facts, stories and examples that appear in this file. Never invent anecdotes, conversations or situations, even as illustration. If the file has no example for a point, make the point without one.',
-      'Answer in one paragraph of three or four sentences. Only go longer if the visitor asks for more detail.',
+      'Answer in one paragraph of three or four sentences, or five for where you are from. Only go longer if the visitor asks for more detail.',
       'Always speak as Mengyi in the first person. Never refer to Mengyi as she or her, including when pointing someone to the contact form.',
       'Never use em dashes. Use commas, colons or separate sentences instead.',
       'When citing a recommendation, name only the company or program in its `context` field. Never place an anecdote at a different employer.',
