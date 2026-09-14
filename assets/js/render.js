@@ -22,8 +22,12 @@
       : esc(g.text)
   ).join(', '));
   const wa = P.identity.workAuthorization;
-  fill('role-line', esc(P.identity.role) +
-    (wa ? ' · <strong>' + esc(wa.emphasis) + '</strong>' : ''));
+  /* Work authorization as a badge: a dark pill with a green tick, as on the LinkedIn banner. */
+  const okBadge = (text) =>
+    '<span class="ok-badge"><span class="tick" aria-hidden="true">' +
+      '<svg viewBox="0 0 12 12"><path d="M2.6 6.3l2.2 2.2 4.6-4.9" fill="none" stroke="#141414" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+    '</span>' + esc(text) + '</span>';
+  fill('role-line', '<span>' + esc(P.identity.role) + '</span>' + (wa ? okBadge(wa.emphasis) : ''));
 
   /* Link the employer's name wherever it appears in the intro copy. */
   const co = P.identity.company;
@@ -34,7 +38,7 @@
   fill('intro', linkCompany(P.intro.long));
   fill('intro-short', linkCompany(P.intro.short));
   fill('location', esc(P.identity.location));
-  fill('work-auth', wa ? esc(wa.text) + '&nbsp;· <strong>' + esc(wa.emphasis) + '</strong>' : '');
+  fill('work-auth', wa ? '<span>' + esc(wa.text) + '</span>' + okBadge(wa.emphasis) : '');
   fill('tags', P.tags.map((t) =>
     '<li' + (t.primary ? ' class="is-primary"' : '') + '>' + esc(t.label) + '</li>'
   ).join(''));
