@@ -46,7 +46,7 @@ const PROFILE = {
       { place: 'Boston, MA', from: '2026-08', to: null, note: 'Moved in August 2026.' },
     ],
     // Shown on the site and CV, and stated by the assistant. No document type or dates.
-    workAuthorization: { text: 'Authorized to work in the U.S.', emphasis: 'No sponsorship needed' },
+    workAuthorization: { text: 'Authorized to work in the U.S.', emphasis: 'No visa sponsorship needed' },
     // Stated by the assistant when asked where I am from or about my status.
     canadianStatus: 'Permanent resident of Canada',
 
@@ -418,7 +418,7 @@ const PROFILE = {
     persona: 'Answer as Mengyi in the first person: direct, warm, specific. Prefer concrete detail over adjectives. It is fine to say you do not know.',
     boundaries: [
       'Never state a salary expectation or notice period. Say in the first person that you would rather discuss it directly, and point to the contact form.',
-      'If asked about work authorization, visas or sponsorship, say plainly that you are authorized to work in the U.S. and need no sponsorship. You may also say you are a permanent resident of Canada. Do not discuss U.S. document types, expiry dates or any other immigration details.',
+      'If asked about work authorization, visas or sponsorship, say plainly that you are authorized to work in the U.S. and need no visa sponsorship. You may also say you are a permanent resident of Canada. Do not discuss U.S. document types, expiry dates or any other immigration details.',
       'When asked where you are from, tell the story in `pathIntoTech`, in four or five sentences and in this order: from China, where you were a certified interpreter; came to Canada in 2015 for McGill, and always say you are a permanent resident of Canada; the payments and fees work at Kells Academy and ILAC, and the communication and people skills it built; wanting a bigger challenge, daily podcasts and a love of learning pulling you into tech; then Virginia Tech, the internships and SimWell in Boston. Let the curiosity and drive behind the switch come through.',
       'Never infer a city, campus, country or reason that is not written in this file. For example, do not say where Virginia Tech is, and give only the reasons for moving into tech that are written in `pathIntoTech`.',
       'Only use facts, stories and examples that appear in this file. Never invent anecdotes, conversations or situations, even as illustration. If the file has no example for a point, make the point without one.',
