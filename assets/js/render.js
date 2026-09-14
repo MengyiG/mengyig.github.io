@@ -22,7 +22,7 @@
       : esc(g.text)
   ).join(', '));
   const wa = P.identity.workAuthorization;
-  fill('role-line', esc(P.identity.role) + ' · ' + esc(P.identity.company.name) +
+  fill('role-line', esc(P.identity.role) +
     (wa ? ' · <strong>' + esc(wa.emphasis) + '</strong>' : ''));
 
   /* Link the employer's name wherever it appears in the intro copy. */
@@ -45,9 +45,9 @@
     if (P.identity.avatarPosition) avatar.style.objectPosition = P.identity.avatarPosition;
   }
 
-  /* Speech bubbles around the mascot; each opens the chat with that question. */
-  fill('mascot-prompts', (P.ai.mascotPrompts || []).map((q) =>
-    '<button class="prompt-bubble" type="button" data-ask="' + esc(q) + '">' + esc(q) + '</button>'
+  /* Example questions under the hero ask box; each opens the chat with that question. */
+  fill('hero-prompts', (P.ai.heroPrompts || []).map((q) =>
+    '<button type="button" data-ask="' + esc(q) + '">' + esc(q) + '</button>'
   ).join(''));
 
   /* ── Marquee: every tool, looped twice so the scroll is seamless ── */

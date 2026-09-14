@@ -41,6 +41,19 @@
     open();
     send(b.dataset.ask);
   }));
+  /* The hero ask box: whatever is typed there becomes the first message. */
+  const heroAsk = $('#heroAsk');
+  if (heroAsk) heroAsk.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = heroAsk.q.value.trim();
+    if (!text) {
+      heroAsk.q.focus();
+      return;
+    }
+    heroAsk.reset();
+    open();
+    send(text);
+  });
   document.querySelectorAll('[data-close-chat]').forEach((b) => b.addEventListener('click', close));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !chat.hidden) close();

@@ -25,7 +25,7 @@ const PROFILE = {
   identity: {
     name: 'Mengyi Guo',
     /* A welcome, not a language claim. The languages she actually works in are
-       stated in `tags` below (EN · FR · 中文). `color` is optional per word. */
+       stated in `tags` below (EN · 中文). `color` is optional per word. */
     greeting: [
       { text: 'Hi' },
       { text: 'Hola', color: '#D6431B' },
@@ -69,7 +69,7 @@ const PROFILE = {
     { label: 'Java 17 · Spring Boot' },
     { label: 'Azure AKS' },
     { label: 'Terraform · Flux' },
-    { label: 'EN · FR · 中文' },
+    { label: 'EN · 中文' },
   ],
 
   /* ── Intro copy ────────────────────────────────────────────────── */
@@ -373,9 +373,11 @@ const PROFILE = {
       'Never use em dashes. Use commas, colons or separate sentences instead.',
       'When citing a recommendation, name only the company or program in its `context` field. Never place an anecdote at a different employer.',
     ],
-    // Shown as speech bubbles around the mascot on the hero.
+    // Example questions under the ask box on the hero.
     // Visitors address the AI as "you"; the AI speaks as Mengyi in the first person.
-    mascotPrompts: [
+    heroPrompts: [
+      'What do you actually build?',
+      'Do you need visa sponsorship?',
       'Are you a good teammate?',
       'Tell me a fun fact',
     ],
