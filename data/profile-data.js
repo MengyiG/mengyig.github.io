@@ -125,10 +125,11 @@ const PROFILE = {
   /* ── Tools & trends ────────────────────────────────────────────── */
   tools: {
     groups: [
-      { group: 'Languages', items: ['Java 17', 'Python 3', 'TypeScript', 'Bash', 'SQL'] },
-      { group: 'Backend', items: ['Spring Boot 3.5', 'Spring Cloud', 'RabbitMQ', 'PostgreSQL', 'TestContainers'] },
+      { group: 'Languages', items: ['Java 17', 'Python 3', 'Bash', 'SQL'] },
+      { group: 'Backend', items: ['Spring Boot 3.5', 'Spring Cloud', 'Spring Security', 'OAuth2 / JWT', 'RabbitMQ', 'PostgreSQL', 'TestContainers'] },
       { group: 'Cloud · Azure', items: ['AKS', 'Key Vault', 'Blob Storage', 'Azure AD', 'ACR', 'PostgreSQL Flexible Server'] },
       { group: 'Infrastructure', items: ['Terraform', 'Flux v2', 'Kustomize', 'Helm', 'Docker', 'Gateway API'] },
+      { group: 'Build & CI/CD', items: ['Maven', 'GitHub Actions'] },
       { group: 'Observability', items: ['OpenTelemetry', 'Jaeger', 'Prometheus', 'Grafana', 'Log Analytics'] },
     ],
     // What I am actively following right now. This is the part that should change often.
